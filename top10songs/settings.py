@@ -20,9 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'y*rs*gmodn)b^b(&g=384a5v0uc^o6%%2ooi$=gi+p0%u@d3+b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -131,3 +131,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '../static'),
 )
+
+# try to load local settings if it exists
+try:
+    from local_settings import *
+except Exception as e:
+    pass
