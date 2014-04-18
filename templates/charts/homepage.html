@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for chart in latest_charts %}
+<div class="panel panel-info text-center">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><h2>{{ chart.week }} <small>({{ chart.get_language_display }})</small></h2></div>
+  <!-- List group -->
+  <div class="list-group">
+    {% for song in chart.song_set.all %}
+    <article class="list-group-item center-block" itemtype="http://schema.org/MusicRecording" itemscope itemprop="track">
+      <div class="row">
+        <div class="col-md-4">
+          <header>
+            <h2 class="list-group-item-heading"><span class="label label-default">#{{ forloop.counter }}</span></h2>
+            <h3 itemprop="name"><a href="{% url 'song_detail' song.id %}" itemprop="url">{{ song.name }}</a></h3>
+          </header>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url 'song_detail' song.id %}" itemprop="url"><img class="img-thumbnail" alt="{{ song.name }}" src="http://i.ytimg.com/vi/{{ song.youtube_id }}/default.jpg" itemprop="thumbnail"></a>
+        </div>
+        <div class="col-md-4">
+          <div>
+            {% if song.album %}
+            <p>Album: <span itemprop="inAlbum"><strong>{{ song.album }}</strong></span></p>
+            {% endif %}
+            {% if song.artist %}
+            <p>Artist: <span itemprop="byArtist"><strong>{{ song.artist }}</strong></span></p>
+            {% endif %}
+            {% if song.publisher %}
+            <p>Publisher: <span itemprop="publisher"><strong>{{ song.publisher }}</strong></span></p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ week|date:'W' }}
+{% endblock %}
+{% block content %}
+<h1>Week {{ week|date:'W' }}</h1>
+
+<ul>
+  {% for chart in object_list %}
+    <li>{{ chart.week|date:"F j, Y" }}: {{ chart.week }}</li>
+  {% endfor %}
+</ul>
+
+<p>
+  {% if previous_week %}
+    Previous Week: {{ previous_week|date:"F Y" }}
+  {% endif %}
+  {% if previous_week and next_week %}--{% endif %}
+  {% if next_week %}
+    Next Week: {{ next_week|date:"F Y" }}
+  {% endif %}
+</p>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% load staticfiles %}{% load extra_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="top 10 songs">
+    <meta name="author" content="Admin">
+    <title>{% block title %}Welcome{% endblock %} | Top 10 Songs</title>
+    <link rel="stylesheet" type="text/css" href='{% static "css/readable.min.css" %}'>
+    {% block stylesheets %}{% endblock %}
+    <style>
+    body {
+      padding-bottom: 20px;
+    }
+    </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'homepage' %}">Top 10 Songs</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="{% url 'song_list' %}">Songs</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Charts <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{% url 'hindi_chart_list' %}">Hindi</a></li>
+                  <li><a href="{% url 'english_chart_list' %}">English</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{% url 'chart_list' %}">All Charts</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archive <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{% url 'chart_archive_index' %}">All </a></li>
+                  <li><a href="{% url 'chart_archive_year' year=2014 %}">Yearly</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      
+    </header>
+
+
+    {% block content %}
+    {% endblock %}
+    
+    <hr>
+    <footer>
+      <div class="row">
+        {% block footer %}
+        {% footer_links %}
+        {% endblock %}
+      </div>
+    </footer>
+  </div><!--container-->
+  {% block scripts %}
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/dropdown.js' %}"></script>
+  <script src="{% static 'js/collapse.js' %}"></script>
+  {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}{{ song.name }}{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <article itemtype="http://schema.org/MusicRecording" itemscope itemprop="track" class="col-md-8">
+    <header>
+      <h1 itemprop="name">{{ song.name }}</h1>
+    </header>
+    <div>
+      {% if song.album %}
+      <p>Album: <span itemprop="inAlbum"><strong>{{ song.album }}</strong></span></p>
+      {% endif %}
+      {% if song.artist %}
+      <p>Artist: <span itemprop="byArtist"><strong>{{ song.artist }}</strong></span></p>
+      {% endif %}
+      {% if song.publisher %}
+      <p>Publisher: <span itemprop="publisher"><strong>{{ song.publisher }}</strong></span></p>
+      {% endif %}
+    </div>
+    <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+      <p class="muted">Youtube Link: <a href="http://youtu.be/{{ song.youtube_id }}">{{ song.name }}</a></p>
+      <iframe width="560" height="315" src="//www.youtube-nocookie.com/embed/{{ song.youtube_id }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </article>
+  <div class="col-md-2"></div>
+</div>
+{% endblock %}
