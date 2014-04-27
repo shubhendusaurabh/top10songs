@@ -7,7 +7,6 @@
     <meta name="description" content="top 10 songs">
     <meta name="author" content="Admin">
     <title>{% block title %}Welcome{% endblock %} | Top 10 Songs</title>
-    <link rel="stylesheet" type="text/css" href='{% static "css/readable.min.css" %}'>
     {% block stylesheets %}{% endblock %}
     <style>
     body {
@@ -101,9 +100,8 @@
   </div><!--container-->
   {% block scripts %}
   <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script src="{% static 'js/dropdown.js' %}"></script>
-  <script src="{% static 'js/collapse.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
   {% endblock %}
 </body>
-
 </html>
+<link rel="stylesheet" type="text/css" href='{% static "css/readable.min.css" %}'>
