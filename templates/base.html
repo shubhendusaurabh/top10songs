@@ -7,7 +7,7 @@
     <meta name="description" content="top 10 songs">
     <meta name="author" content="Admin">
     <title>{% block title %}Welcome{% endblock %} | Top 10 Songs</title>
-    <link rel="stylesheet" type="text/css" href='{% static "css/readable.min.css" %}'>
+    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css" rel="stylesheet">
     {% block stylesheets %}{% endblock %}
     <style>
     body {
@@ -143,8 +143,9 @@
     </section>
   </div><!--container-->
   {% block scripts %}
-  <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script async src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('{% static "js/jquery.min.js" %}')</script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   <script>
   // create social networking pop-ups
   (function() {
