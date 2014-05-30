@@ -1,4 +1,5 @@
 from fabric.api import local
+import pip
 
 def deploy():
 	local('pip freeze > requirements.txt')
@@ -9,3 +10,7 @@ def deploy():
 	local('heroku maintenance:on')
 	local('git push heroku master')
 	local('heroku maintenance:off')
+
+def upgrade():
+    for dist in pip.get_installed_distributions():
+        local('pip install --upgrade {0}'.format(dist.project_name))
