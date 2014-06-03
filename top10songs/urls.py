@@ -13,15 +13,11 @@ info_dict  = {
 
 sitemaps = {
     'flatpages': FlatPageSitemap,
-    #'chart': GenericSitemap(info_dict, priority=0.6),
+    'chart': GenericSitemap(info_dict, priority=0.6),
     #'charts': ChartSitemap,
 }
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'top10songs.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-    # url(r'^page/', include('django.contrib.flatpages.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     url(r'', include('charts.urls')),

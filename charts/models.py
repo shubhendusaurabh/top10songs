@@ -15,9 +15,11 @@ class Chart(models.Model):
 
     class Meta:
         ordering = ['-week']
+
     @models.permalink
     def get_absolute_url(self):
-        return reverse('chart_detail', kwargs={'pk': self.pk})
+        #return reverse('chart_detail', kwargs={'pk': self.pk})
+        return ('song_detail', [int(self.pk)])
 
     def __unicode__(self):
         return '%s' % (self.week)
