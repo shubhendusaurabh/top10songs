@@ -19,7 +19,7 @@ class Chart(models.Model):
     @models.permalink
     def get_absolute_url(self):
         #return reverse('chart_detail', kwargs={'pk': self.pk})
-        return ('song_detail', [int(self.pk)])
+        return ('chart_detail', [int(self.pk)])
 
     def __unicode__(self):
         return '%s' % (self.week)
