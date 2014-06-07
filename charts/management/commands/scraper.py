@@ -7,6 +7,7 @@ import datetime
 import json
 from bs4 import BeautifulSoup
 from charts.models import Chart,Song
+from .billboard import fetchEntries
 
 hindiURL = 'http://www.radiomirchi.com/more/mirchi-top-20/'
 engURL = 'http://top10songs.com/'
@@ -38,6 +39,18 @@ def scrap_eng_songs():
         s = Song()
         s.name = songs[i].text.strip()
         s.artist = songs[i+1].text.strip()
+        s.youtube_id = get_youtube_id(s.name)
+        s.chart = c
+        s.save()
+
+def scrap_eng_songs_new():
+    songs = fetchEntries()
+    c = init_chart('EN')
+    for song in songs:
+        s = Song()
+        s.name = song.name
+        s.artist = song.artist
+        s.album = song.album
         s.youtube_id = get_youtube_id(s.name)
         s.chart = c
         s.save()
