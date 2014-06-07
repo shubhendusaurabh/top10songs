@@ -23,7 +23,6 @@ class ChartArchiveIndexView(ArchiveIndexView):
 
         archive = sorted(archive.items(), reverse=True)
         context['archive'] = archive
-        
         return context
 
 class ChartYearArchiveView(YearArchiveView):

@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 from django.views.generic.dates import *
 from .models import *
 from .views import *
-
+from .feeds import LatestChartsFeeds
 
 urlpatterns = patterns('',
                        ## Date Based View
@@ -54,4 +54,8 @@ urlpatterns = patterns('',
                        url(r'^$',
                            HomePageView.as_view(),
                            name='homepage'),
+                       # Feeds
+                       url(r'^latest/feeds/$',
+                               LatestChartsFeeds(),
+                               name='feeds')
 )
