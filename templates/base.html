@@ -4,7 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="top 10 songs">
+    {% block meta_tags %}
+    <meta name="description" content="Get Top 10 Songs/Music Chart of the Week, Month, Year for Free">
+    <meta name="keywords" content='hindi songs, english songs, top 10 hindi songs, top 10 english songs, top 10 songs hindi, top 10 songs english, top 10 songs, song charts, top 10 songs of the week, top 10 songs of the year, top 10 downloaded songs, top 10 streamed songs, top 10 songs this week, top 10 songs of the month, top ten songs, free songs download'>
+    {% endblock meta_tags %}
     <meta name="author" content="Admin">
     <link type="application/atom+xml" rel="alternate" href="{% url 'feeds' %}" />
     <title>{% block title %}Welcome{% endblock %} | Top 10 Songs</title>

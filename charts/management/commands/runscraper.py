@@ -7,7 +7,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            #scraper.scrap_hindi_songs()
+            scraper.scrap_hindi_songs()
             scraper.scrap_eng_songs_new()
         except:
             raise CommandError('Oh Shoot')

@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}{{ song.name }}{% endblock %}
+{% block meta_tags %}
+  <meta name="description" content='Watch/Listen to {{ song.name }} by {{ song.artist }} of {{ song.album }} for free on YouTube. {{ song.name }} is one of the Top 10 songs in {{ song.updated_at|date:"F, Y" }}.'>
+  <meta name="keywords" content='{{ song.name }}, {{ song.artist }}, {{ song.album }}, youtube video, listen for free {{ song.name }}'>
+{% endblock %}
 {% block stylesheets %}
 <style>
  .flex-video {

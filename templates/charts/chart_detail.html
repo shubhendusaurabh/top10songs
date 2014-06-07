@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}{{ object.week }}{% endblock %}
+{% block meta_tags %}
+  <meta name="description" content='Watch/Listen to Top 10 Songs of {{ chart.week }}  for free on YouTube. Find other top songs.' >
+  <meta name="keywords" content='top 10 songs, {{ chart.week|date:"F" }} songs, top songs of this week.'>
+{% endblock meta_tags %}
 {% block content %}
 <div class="panel panel-info text-center">
   <!-- Default panel contents -->
