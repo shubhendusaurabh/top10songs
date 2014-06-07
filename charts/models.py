@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.utils.safestring import mark_safe
 
 # Create your models here.
 
@@ -23,6 +24,11 @@ class Chart(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.week)
+
+    def scrap_songs_init(self):
+        return mark_safe('<img class="loading" src="/static/img/loading.gif" alt="loading" style="display:none;" /><a class="task"><span class="glyphicon glyphicon-star"></span>Load</a>')
+    scrap_songs_init.allow_tags = True
+    scrap_songs_init.short_description = ('Scrap Songs')
 
 class Song(models.Model):
     name = models.CharField(max_length=255)

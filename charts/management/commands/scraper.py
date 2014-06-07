@@ -29,8 +29,7 @@ def get_youtube_id(songName):
     response = urlopen(YouTubeapi+encoded_args).read()
     parsed_response = json.loads(response)
     return parsed_response['data']['items'][0]['id']
-    
-    
+
 def scrap_eng_songs():
     doc = make_soup(engURL)
     songs = doc.findAll("td", "left")
