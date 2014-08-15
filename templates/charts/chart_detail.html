@@ -10,7 +10,7 @@
   <div class="panel-heading"><h2>{{ object.week }} <small>({{ object.get_language_display }})</small></h2></div>
   <!-- List group -->
   <div class="list-group">
-    {% for song in object.song_set.all %}
+    {% for song in object.songs.all %}
     <article class="list-group-item center-block" itemtype="http://schema.org/MusicRecording" itemscope itemprop="track">
       <div class="row">
         <div class="col-md-4">

@@ -36,7 +36,7 @@ class Song(models.Model):
     album = models.CharField(max_length=255, blank=True)
     youtube_id = models.CharField(max_length=255, blank=True)
     publisher = models.CharField(max_length=255, blank=True)
-    chart = models.ForeignKey(Chart)
+    chart = models.ForeignKey(Chart, related_name='songs')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -13,7 +13,7 @@ class ChartArchiveIndexView(ArchiveIndexView):
     date_field = 'week'
     def get_context_data(self, **kwargs):
         context = super(ChartArchiveIndexView, self).get_context_data(**kwargs)
-        charts = Chart.objects.all()
+        charts = Chart.objects.select_related()
         archive = {}
 
         years = charts.dates(self.date_field, 'year')[::-1]
@@ -26,48 +26,48 @@ class ChartArchiveIndexView(ArchiveIndexView):
         return context
 
 class ChartYearArchiveView(YearArchiveView):
-    queryset = Chart.objects.all()
+    queryset = Chart.objects.select_related()
     date_field = 'week'
     make_object_list = True
     allow_future = True
 
 class ChartMonthArchiveView(MonthArchiveView):
-    queryset = Chart.objects.all()
+    queryset = Chart.objects.select_related()
     date_field = 'week'
     make_object_list = True
     allow_future = True
 
 class ChartWeekArchiveView(WeekArchiveView):
-    queryset = Chart.objects.all()
+    queryset = Chart.objects.select_related()
     date_field = 'week'
     make_object_list = True
     week_format = "%W"
     allow_future = True
 
 class ChartDayArchiveView(DayArchiveView):
-    queryset = Chart.objects.all()
+    queryset = Chart.objects.select_related()
     date_field = "week"
     month_format = "%m"
     make_object_list = True
     allow_future = True
 
 class ChartTodayArchiveView(TodayArchiveView):
-    queryset = Chart.objects.all()
+    queryset = Chart.objects.select_related()
     date_field = 'week'
     make_object_list = True
     allow_future = True
 
 class ChartDateDetailView(DateDetailView):
-    queryset = Chart.objects.all()
+    queryset = Chart.objects.select_related()
     date_field = 'week'
     make_object_list = True
     allow_future = True
 
 class ChartDetailView(DetailView):
-    model = Chart
+    queryset = Chart.objects.select_related()
 
 class SongDetailView(DetailView):
-    model = Song
+    queryset = Song.objects.select_related()
 
 class ChartListView(ListView):
     language = ""
@@ -89,5 +89,5 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        context['latest_charts'] = Chart.objects.all()[:2]
+        context['latest_charts'] = Chart.objects.select_related()[:2]
         return context

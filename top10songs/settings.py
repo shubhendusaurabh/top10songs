@@ -77,8 +77,8 @@ WSGI_APPLICATION = 'top10songs.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydb',
-        'USER': 'postgres',
+        'NAME': 'top10songs',
+        'USER': 'shubhu',
         'PASSWORD': 'shubhu',
         'HOST': 'localhost',
         'PORT': '5432'
@@ -144,6 +144,25 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '../static'),
 )
 
-#STATICFILES_STORAGE = (
-        #'django.contrib.staticfiles.storage.ManifestStaticFilesStorage',
-#)
+if get_env_variable('DEVELOPMENT') == 'True':
+
+    INSTALLED_APPS += ('debug_toolbar',)
+
+    MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware', )
+
+    INTERNAL_IPS = ('127.0.0.1', )
+
+    DEBUG = True
+
+    TEMPLATE_DEBUG = True
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'top10songs',
+            'USER': 'shubhu',
+            'PASSWORD': 'shubhu',
+            'HOST': 'localhost',
+            'PORT': '5432'
+        }
+    }
