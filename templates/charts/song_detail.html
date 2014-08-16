@@ -4,7 +4,7 @@
 
 {% block meta_tags %}
 <meta name="description" content='Watch/Listen to {{ song.name }} by {{ song.artist }} of {{ song.album }} for free on YouTube. {{ song.name }} is one of the Top 10 songs in {{ song.updated_at|date:"F, Y" }}.'>
-<meta name="keywords" content='{{ song.name }}, {{ song.artist }}, {{ song.album }}, youtube video, listen for free {{ song.name }}'>
+<meta name="keywords" content='{{ song.name }}, {{ song.artist }}, {{ song.album }}, youtube video, listen for free {{ song.name }}, {{ song.name }} by {{ song.artist }}'>
 {% endblock %}
 
 {% block content %}
@@ -25,6 +25,8 @@
             <p>Publisher: <span itemprop="publisher"><strong>{{ song.publisher }}</strong></span>
             </p>
             {% endif %}
+            <p>On Chart: <strong>{{ song.created_at|date:"F j, Y" }}</strong>
+            </p>
         </div>
         <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
 

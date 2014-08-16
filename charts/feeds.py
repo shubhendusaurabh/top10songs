@@ -13,7 +13,7 @@ class LatestChartsFeeds(Feed):
         return "Top 10 " + item.get_language_display() + " Songs in " + item.week.strftime("%B %d, %Y")
 
     def item_description(self, item):
-        songs = item.song_set.all()
+        songs = item.songs.all()
         content = '<ul>'
         template = '<li><a href="%s">%s</a></li>'
         for song in songs:
