@@ -43,6 +43,7 @@ def search(request):
         pass
     except Song.MultipleObjectsReturned:
         pass
+        #TODO redirect to song
 
     form = SearchForm(request.GET or None)
 
