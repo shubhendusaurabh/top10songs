@@ -68,7 +68,7 @@
 <body>
   <div class="container">
     <header class="header">
-      
+
       <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -106,7 +106,7 @@
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
-      
+
     </header>
 
 
@@ -114,27 +114,26 @@
     {% endblock %}
     <div class="row text-center">
       <p><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.top10songs.co.in%2F" class="share facebook">Share on Facebook</a>
-    
+
       <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.top10songs.co.in%2F&text=Top+10+Songs&hashtags=top10songs" class="share twitter">Share on Twitter</a>
-    
+
       <a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.top10songs.co.in%2F" class="share google">Share on Google+</a>
-    
+
       <a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.top10songs.co.in%2F&source=Top10Songs&title=Top10Songs" class="share linkedin">Share on LinkedIn</a></p>
     </div>
     <hr>
     <div class="row">
       <div id="disqus_thread"></div>
       <script type="text/javascript">
-        var disqus_shortname = 'top10songs'; 
+        var disqus_shortname = 'top10songs';
         (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
       </script>
-      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>      
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-    <hr>
     <footer>
       <div class="row">
         {% block footer %}
@@ -161,24 +160,24 @@
     Width: 500,
     Height: 500
       };
-   
+
       // add handler links
       var slink = document.querySelectorAll(Config.Link);
       for (var a = 0; a < slink.length; a++) {
     slink[a].onclick = PopupHandler;
       }
-   
+
       // create popup
       function PopupHandler(e) {
-   
+
     e = (e ? e : window.event);
     var t = (e.target ? e.target : e.srcElement);
-   
+
     // popup position
     var
         px = Math.floor(((screen.availWidth || 1024) - Config.Width) / 2),
         py = Math.floor(((screen.availHeight || 700) - Config.Height) / 2);
-   
+
     // open popup
     var popup = window.open(t.href, "social",
         "width="+Config.Width+",height="+Config.Height+
@@ -189,10 +188,10 @@
         if (e.preventDefault) e.preventDefault();
         e.returnValue = false;
     }
-   
+
     return !!popup;
       }
- 
+
   }());
   </script>
   {% endblock %}

@@ -20,6 +20,7 @@ sitemaps = {
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    url(r'^search/', include('search.urls')),
     url(r'', include('charts.urls')),
 
 )
