@@ -64,7 +64,7 @@ def scrap_hindi_songs():
             s = Song()
             s.name = song.contents[1].text.strip()
             s.album = song.contents[3].next.strip()
-            s.publisher = song.contents[3].next.next.next.strip()
+            s.artist = song.contents[3].next.next.next.strip()
             s.youtube_id = get_youtube_id(s.name)
             s.chart = c
             s.save()

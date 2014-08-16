@@ -36,14 +36,13 @@ def search(request):
             pass
 
     try:
-        songs = Song.objects.get(name=q)
-        url = Song.get_absolute_url()
+        song = Song.objects.get(name__icontains=q)
+        url = song.get_absolute_url()
         return HttpResponseRedirect(url)
     except Song.DoesNotExist:
         pass
     except Song.MultipleObjectsReturned:
         pass
-        #TODO return first item
 
     form = SearchForm(request.GET or None)
 
