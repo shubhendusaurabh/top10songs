@@ -4,23 +4,27 @@
 {% endblock %}
 {% block content %}
 <div>
-  <div class="panel panel-info text-center">
-    <div class="panel-heading"><h2>All Charts for {{ month|date:"F, Y" }}</h2></div>
-    <ul class="list-group">
-      {% for chart in object_list %}
-      <li class="list-group-item">Top 10 {{ chart.get_language_display }} Songs in<a href='{% url "chart_detail" chart.id %}'> {{ chart.week|date }}</a></li>
-      {% empty %}
-      <li>No Chart Found</li>
-      {% endfor %}
-    </ul>
-  </div>
+    <div class="panel panel-info text-center">
+        <div class="panel-heading">
+            <h2>All Charts for {{ month|date:"F, Y" }}</h2>
+        </div>
+        <ul class="list-group">
+            {% for chart in object_list %}
+            <li class="list-group-item">Top 10 {{ chart.get_language_display }} Songs in<a href='{% url "chart_detail" chart.id %}'> {{ chart.week|date }}</a>
+            </li>
+            {% empty %}
+            <li>No Chart Found</li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
-    <ul class="pager">
-      {% if previous_month %}
-      <li><a href='{% url "chart_archive_month" year=previous_month.year month=previous_month.month %}'>&laquo; {{ previous_month|date:"F Y" }}</a></li>
-      {% endif %}
-      {% if next_month %}
-        <li><a href='{% url "chart_archive_month" year=next_month.year month=next_month.month %}'>{{ next_month|date:"F Y" }} &raquo;</a></li>
-      {% endif %}
-    </ul>
+<ul class="pager">
+    {% if previous_month %}
+    <li><a href='{% url "chart_archive_month" year=previous_month.year month=previous_month.month %}'>&laquo; {{ previous_month|date:"F Y" }}</a>
+    </li>
+    {% endif %} {% if next_month %}
+    <li><a href='{% url "chart_archive_month" year=next_month.year month=next_month.month %}'>{{ next_month|date:"F Y" }} &raquo;</a>
+    </li>
+    {% endif %}
+</ul>
 {% endblock %}

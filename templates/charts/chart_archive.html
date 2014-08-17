@@ -4,12 +4,13 @@ Archives
 {% endblock %}
 {% block content %}
 {% for years, months in archive %}
-  <h2><a href="{% url 'chart_archive_year' years.year %}">{{ years.year }}</a></h2>
-  <ul class="pager">
-  {% for month in months %}
-    <li><a href="{% url 'chart_archive_month' years.year month|date:'b' %}">{{ month|date:"F" }}</a></li>
-  {% endfor %}
-  </ul>
-  <hr>
+ <h2><a href="{% url 'chart_archive_year' years.year %}">{{ years.year }}</a></h2>
+<ul class="pager">
+    {% for month in months %}
+    <li><a href="{% url 'chart_archive_month' years.year month|date:'b' %}">{{ month|date:"F" }}</a>
+    </li>
+    {% endfor %}
+</ul>
+<hr>
 {% endfor %}
 {% endblock %}

@@ -4,33 +4,30 @@ All Charts
 {% endblock %}
 {% block content %}
 <div class="panel panel-info">
-  <div class="panel-heading">All Charts List</div>
-  <ul class="list-group">
-    {% for chart in object_list %}
-    <li class="list-group-item">Top 10 {{ chart.get_language_display }} Songs in<a href='{% url "chart_detail" chart.id %}'> {{ chart.week|date }}</a></li>
-    {% empty %}
-    <li>No Chart Found</li>
-    {% endfor %}
-  </ul>
+    <div class="panel-heading">All Charts List</div>
+    <ul class="list-group">
+        {% for chart in object_list %}
+        <li class="list-group-item">Top 10 {{ chart.get_language_display }} Songs in<a href='{% url "chart_detail" chart.id %}'> {{ chart.week|date }}</a>
+        </li>
+        {% empty %}
+        <li>No Chart Found</li>
+        {% endfor %}
+    </ul>
 </div>
 {% if is_paginated %}
 
 <ul class="pagination">
 
-  {% if page_obj.has_previous %}
-  <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
-  {% endif %}
-
-  {% for i in paginator.page_range %}
-  {% if page_obj.has_next %}
-  <li><a href="?page={{i}}">{{i}}</a></li>
-  {% endif %}
-
-  {% endfor %}
-
-  {% if page_obj.has_next %}
-  <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
-  {% endif %}
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+    </li>
+    {% endif %} {% for i in paginator.page_range %} {% if page_obj.has_next %}
+    <li><a href="?page={{i}}">{{i}}</a>
+    </li>
+    {% endif %} {% endfor %} {% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}">Next</a>
+    </li>
+    {% endif %}
 
 </ul>
 
