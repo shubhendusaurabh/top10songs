@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib2 import urlopen
 
+
 class ChartEntry:
 
     def __init__(self, name, artist, album):
@@ -10,6 +11,7 @@ class ChartEntry:
 
     def __repr__(self):
         return '%s by %s ' % (self.name, self.artist)
+
 
 def fetchEntries():
     songs = []

@@ -1,6 +1,7 @@
 from django.contrib.syndication.views import Feed
 from .models import Chart
 
+
 class LatestChartsFeeds(Feed):
     title = 'Top 10 Songs'
     link = '/charts/'
@@ -17,6 +18,6 @@ class LatestChartsFeeds(Feed):
         content = '<ul>'
         template = '<li><a href="%s">%s</a></li>'
         for song in songs:
-            temp = template % (song.get_absolute_url(),song.name)
+            temp = template % (song.get_absolute_url(), song.name)
             content += temp
         return content + '</ul>'

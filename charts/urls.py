@@ -5,7 +5,7 @@ from .views import *
 from .feeds import LatestChartsFeeds
 
 urlpatterns = patterns('',
-                       ## Date Based View
+                       # Date Based View
                        url(r'^charts/archive/$',
                            ChartArchiveIndexView.as_view(),
                            name="chart_archive_index"),
@@ -27,8 +27,8 @@ urlpatterns = patterns('',
                        url(r'^charts/today/$',
                            ChartTodayArchiveView.as_view(),
                            name='chart_archive_today'),
-                       #### Generic Views
-                       ## Charts
+                       # Generic Views
+                       # Charts
                        url(r'^chart/(?P<pk>\d+)/$',
                            ChartDetailView.as_view(),
                            name='chart_detail'),
@@ -41,11 +41,11 @@ urlpatterns = patterns('',
                        url(r'^charts/$',
                            ChartListView.as_view(),
                            name='chart_list'),
-                       ## Songs
+                       # Songs
                        url(r'^song/(?P<pk>\d+)/$',
                            SongDetailView.as_view(),
                            name='song_detail'),
-                       #url(r'^songs/english/$',
+                       # url(r'^songs/english/$',
                        #    SongListView.as_view(language='EN'),
                        #    name='english_song_list'),
                        url(r'^songs/$',
@@ -56,6 +56,6 @@ urlpatterns = patterns('',
                            name='homepage'),
                        # Feeds
                        url(r'^latest/feeds/$',
-                               LatestChartsFeeds(),
-                               name='feeds')
-)
+                           LatestChartsFeeds(),
+                           name='feeds')
+                       )

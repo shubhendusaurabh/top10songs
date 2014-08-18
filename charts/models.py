@@ -4,6 +4,7 @@ from django.utils.safestring import mark_safe
 
 # Create your models here.
 
+
 class Chart(models.Model):
     LANGUAGES = (
         ('HI', 'Hindi'),
@@ -19,7 +20,7 @@ class Chart(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        #return reverse('chart_detail', kwargs={'pk': self.pk})
+        # return reverse('chart_detail', kwargs={'pk': self.pk})
         return ('chart_detail', [int(self.pk)])
 
     def __unicode__(self):
@@ -29,6 +30,7 @@ class Chart(models.Model):
         return mark_safe('<img class="loading" src="/static/img/loading.gif" alt="loading" style="display:none;" /><a class="task"><span class="glyphicon glyphicon-star"></span>Load</a>')
     scrap_songs_init.allow_tags = True
     scrap_songs_init.short_description = ('Scrap Songs')
+
 
 class Song(models.Model):
     name = models.CharField(max_length=255)

@@ -13,12 +13,13 @@ def search_function(q):
     items = []
     if q:
         items = Song.objects.select_related().filter(
-                Q(name__icontains=q) |
-                Q(artist__startswith=q.lower()) |
-                Q(album__icontains=q) )
+            Q(name__icontains=q) |
+            Q(artist__startswith=q.lower()) |
+            Q(album__icontains=q))
     else:
         items = Song.objects.select_related()
     return items
+
 
 def search(request):
 
@@ -43,11 +44,11 @@ def search(request):
         pass
     except Song.MultipleObjectsReturned:
         pass
-        #TODO redirect to song
+        # TODO redirect to song
 
     form = SearchForm(request.GET or None)
 
-    return render(request, template_name, { 'songs': search_function(q), 'form': form })
+    return render(request, template_name, {'songs': search_function(q), 'form': form})
 
 
 def search_autocomplete(request):

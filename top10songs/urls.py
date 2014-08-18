@@ -6,7 +6,7 @@ from charts.models import Chart, Song
 from charts.sitemaps import ChartSitemap
 admin.autodiscover()
 
-info_dict  = {
+info_dict = {
     'queryset': Chart.objects.all(),
     'date_field': 'week',
 }
@@ -18,15 +18,16 @@ sitemaps = {
 }
 
 urlpatterns = patterns('',
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
-    url(r'^search/', include('search.urls')),
-    url(r'', include('charts.urls')),
+                       url(r'^admin/', include(admin.site.urls)),
+                       url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
+                           {'sitemaps': sitemaps}),
+                       url(r'^search/', include('search.urls')),
+                       url(r'', include('charts.urls')),
 
-)
+                       )
 
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += patterns('',
                             url(r'^__debug__/', include(debug_toolbar.urls)),
-    )
+                            )
