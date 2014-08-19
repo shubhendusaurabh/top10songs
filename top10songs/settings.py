@@ -46,10 +46,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'charts',
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.sitemaps',
+
+    'charts',
     'search',
 )
 
@@ -147,7 +148,7 @@ STATICFILES_DIRS = (
 
 if get_env_variable('DEVELOPMENT') == 'True':
 
-    INSTALLED_APPS += ('debug_toolbar',)
+    INSTALLED_APPS += ('debug_toolbar', 'django_extensions', )
 
     MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware', )
 
