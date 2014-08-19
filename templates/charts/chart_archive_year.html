@@ -5,7 +5,7 @@
 {% block content %}
 <ul class="pager">
     {% for date in date_list %}
-    <li><a href='{% url ' chart_archive_month_numeric ' year=date.year month=date.month %}'>{{ date|date:"F" }}</a>
+    <li><a href='{% url "chart_archive_month_numeric" year=date.year month=date.month %}'>{{ date|date:"F" }}</a>
     </li>
     {% endfor %}
 </ul>
