@@ -1,206 +1,207 @@
 {% load staticfiles %}{% load extra_tags %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block meta_tags %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">{% block meta_tags %}
     <meta name="description" content="Get Top 10 Songs/Music Chart of the Week, Month, Year for Free">
-    <meta name="keywords" content='hindi songs, english songs, top 10 hindi songs, top 10 english songs, top 10 songs hindi, top 10 songs english, top 10 songs, song charts, top 10 songs of the week, top 10 songs of the year, top 10 downloaded songs, top 10 streamed songs, top 10 songs this week, top 10 songs of the month, top ten songs, free songs download'>
-    {% endblock meta_tags %}
+    <meta name="keywords" content='hindi songs, english songs, top 10 hindi songs, top 10 english songs, top 10 songs hindi, top 10 songs english, top 10 songs, song charts, top 10 songs of the week, top 10 songs of the year, top 10 downloaded songs, top 10 streamed songs, top 10 songs this week, top 10 songs of the month, top ten songs, free songs download'>{% endblock meta_tags %}
     <meta name="author" content="Admin">
     <link type="application/atom+xml" rel="alternate" href="{% url 'feeds' %}" />
     <title>{% block title %}Welcome{% endblock %} | Top 10 Songs</title>
     <link href="//netdna.bootstrapcdn.com/bootswatch/3.2.0/readable/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
     <link rel='shortcut icon' href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-    <link rel='icon' href='{% static "img/favicon.ico" %}' type='image/x-icon'>
-    {% block stylesheets %}{% endblock %}
+    <link rel='icon' href='{% static "img/favicon.ico" %}' type='image/x-icon'>{% block stylesheets %}{% endblock %}
     <style>
-    body {
-      padding-bottom: 20px;
-    }
+        body {
+            padding-bottom: 20px;
+        }
+        a.share:link,
+        a.share:visited {
+            text-decoration: none;
+            padding: 1em 1em;
+            border-radius: 2px;
+            font-size: 1.5em;
+        }
 
-    @font-face {
-        font-family: 'social';
-        src: url("{% static 'fonts/social.eot' %}");
-        src: url("social.eot#iefix") format('embedded-opentype'), url("{% static 'fonts/social.woff' %}") format('woff'), url("{% static 'fonts/social.ttf' %}") format('truetype'), url("{% static 'fonts/social.svg#social' %}") format('svg');
-              font-weight: normal;
-                font-style: normal;
-    }
-    a.share:link, a.share:visited
-    {
-      text-decoration: none;
-      padding: 0.2em 0.5em;
-      color: #00c;
-      background-color: #fff;
-      border-radius: 4px;
-    }
-
-    a.share:hover, a.share:focus
-    {
-      box-shadow: 0 0 3px #00f;
-    }
-
-    a.share:before
-    {
-      font-family: social;
-      content: "T";
-      margin-right: 6px;
-      color: #00abf0;
-    }
-
-    a.facebook:before { content: "F"; color: #3c599f; }
-    a.google:before { content: "G"; color: #da2713; }
-    a.linkedin:before { content: "L"; color: #069; }
+        .facebook,
+        .twitter,
+        .google-plus {
+            width: 100%;
+            color: rgb(75, 110, 168) !important;
+        }
+        .twitter {
+            color: rgb(79, 213, 248) !important;
+        }
+        .google-plus {
+            color: rgb(221, 75, 57) !important;
+        }
+        .facebook:hover {
+            color: rgb(255, 255, 255) !important;
+            background-color: rgb(75, 110, 168) !important;
+        }
+        .twitter:hover {
+            color: rgb(255, 255, 255) !important;
+            background-color: rgb(79, 213, 248) !important;
+        }
+        .google-plus:hover {
+            color: rgb(255, 255, 255) !important;
+            background-color: rgb(221, 75, 57) !important;
+        }
     </style>
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-      ga('create', 'UA-48464765-1', 'top10songs.co.in');
-      ga('send', 'pageview');
-
+        ga('create', 'UA-48464765-1', 'top10songs.co.in');
+        ga('send', 'pageview');
     </script>
 </head>
 
 <body>
-  <div class="container">
-    <header class="header">
+    <div class="container">
+        <header class="header">
 
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'homepage' %}">Top 10 Songs</a>
-          </div>
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{% url 'homepage' %}">Top 10 Songs</a>
+                    </div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li><a href="{% url 'song_list' %}">Songs</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Charts <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="{% url 'hindi_chart_list' %}">Hindi</a></li>
-                  <li><a href="{% url 'english_chart_list' %}">English</a></li>
-                  <li class="divider"></li>
-                  <li><a href="{% url 'chart_list' %}">All Charts</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archive <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="{% url 'chart_archive_index' %}">All </a></li>
-                  <li><a href="{% url 'chart_archive_year' year=2014 %}">Yearly</a></li>
-                </ul>
-              </li>
-            </ul>
-            <form class="navbar-form navbar-right" role="search" action="{% url 'search' %}" method='get'>
-                <div class="form-group">
-                    <input type="search" class="form-control" id='search' placeholder="Search" name='q' value='{{ form.q.value }}'>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="{% url 'song_list' %}">Songs</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Charts <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'hindi_chart_list' %}">Hindi</a>
+                                    </li>
+                                    <li><a href="{% url 'english_chart_list' %}">English</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="{% url 'chart_list' %}">All Charts</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archive <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'chart_archive_index' %}">All </a>
+                                    </li>
+                                    <li><a href="{% url 'chart_archive_year' year=2014 %}">Yearly</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="navbar-form navbar-right" role="search" action="{% url 'search' %}" method='get'>
+                            <div class="form-group">
+                                <input type="search" class="form-control" id='search' placeholder="Search" name='q' value='{{ form.q.value }}'>
+                            </div>
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </form>
+                    </div>
+                    <!-- /.navbar-collapse -->
                 </div>
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>
-                </button>
-            </form>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
+                <!-- /.container-fluid -->
+            </nav>
 
-    </header>
+        </header>
 
 
-    {% block content %}
+        {% block content %} {% endblock %}
+        <div class="row text-center">
+            <p>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" class="share facebook"><span class="fa fa-facebook"></span></a>
+
+                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri|urlencode }}&text=Top+10+Songs&hashtags=top10songs" class="share twitter"><span class="fa fa-twitter"></span></a>
+
+                <a href="https://plus.google.com/share?url={{ request.build_absolute_uri|urlencode }}" class="share google-plus"><span class="fa fa-google"></span></a>
+            </p>
+        </div>
+        <hr>
+        <footer>
+            <div class="row">
+                {% block footer %} {% footer_links %} {% endblock %}
+            </div>
+        </footer>
+        <section class='container'>
+            <div class="col-md-4">
+                <iframe data-aa='35799' src='//ad.a-ads.com/35799?size=120x60' scrolling='no' style='width:120px; height:60px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
+            </div>
+        </section>
+    </div>
+    <!--container-->
+    {% block scripts %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src={% static "js/jquery.min.js" %}>')
+    </script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script>
+        // create social networking pop-ups
+        (function () {
+            // link selector and pop-up window size
+            var Config = {
+                Link: "a.share",
+                Width: 500,
+                Height: 500
+            };
+
+            // add handler links
+            var slink = document.querySelectorAll(Config.Link);
+            for (var a = 0; a < slink.length; a++) {
+                slink[a].onclick = PopupHandler;
+            }
+
+            // create popup
+            function PopupHandler(e) {
+
+                e = (e ? e : window.event);
+                var t = (e.target ? e.target : e.srcElement);
+
+                // popup position
+                var
+                    px = Math.floor(((screen.availWidth || 1024) - Config.Width) / 2),
+                    py = Math.floor(((screen.availHeight || 700) - Config.Height) / 2);
+
+                // open popup
+                var popup = window.open(t.href, "social",
+                    "width=" + Config.Width + ",height=" + Config.Height +
+                    ",left=" + px + ",top=" + py +
+                    ",location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1");
+                if (popup) {
+                    popup.focus();
+                    if (e.preventDefault) e.preventDefault();
+                    e.returnValue = false;
+                }
+
+                return !!popup;
+            }
+
+        }());
+    </script>
     {% endblock %}
-    <div class="row text-center">
-      <p><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.top10songs.co.in%2F" class="share facebook">Share on Facebook</a>
-
-      <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.top10songs.co.in%2F&text=Top+10+Songs&hashtags=top10songs" class="share twitter">Share on Twitter</a>
-
-      <a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.top10songs.co.in%2F" class="share google">Share on Google+</a>
-
-      <a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.top10songs.co.in%2F&source=Top10Songs&title=Top10Songs" class="share linkedin">Share on LinkedIn</a></p>
-    </div>
-    <hr>
-    <div class="row">
-      <div id="disqus_thread"></div>
-      <script type="text/javascript">
-        var disqus_shortname = 'top10songs';
-        (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-    <footer>
-      <div class="row">
-        {% block footer %}
-        {% footer_links %}
-        {% endblock %}
-      </div>
-    </footer>
-    <section class='container'>
-      <div class="col-md-4">
-        <iframe data-aa='35799' src='//ad.a-ads.com/35799?size=120x60' scrolling='no' style='width:120px; height:60px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
-      </div>
-    </section>
-  </div><!--container-->
-  {% block scripts %}
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src={% static "js/jquery.min.js" %}>')</script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  <script>
-  // create social networking pop-ups
-  (function() {
-      // link selector and pop-up window size
-      var Config = {
-    Link: "a.share",
-    Width: 500,
-    Height: 500
-      };
-
-      // add handler links
-      var slink = document.querySelectorAll(Config.Link);
-      for (var a = 0; a < slink.length; a++) {
-    slink[a].onclick = PopupHandler;
-      }
-
-      // create popup
-      function PopupHandler(e) {
-
-    e = (e ? e : window.event);
-    var t = (e.target ? e.target : e.srcElement);
-
-    // popup position
-    var
-        px = Math.floor(((screen.availWidth || 1024) - Config.Width) / 2),
-        py = Math.floor(((screen.availHeight || 700) - Config.Height) / 2);
-
-    // open popup
-    var popup = window.open(t.href, "social",
-        "width="+Config.Width+",height="+Config.Height+
-        ",left="+px+",top="+py+
-        ",location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1");
-    if (popup) {
-        popup.focus();
-        if (e.preventDefault) e.preventDefault();
-        e.returnValue = false;
-    }
-
-    return !!popup;
-      }
-
-  }());
-  </script>
-  {% endblock %}
 </body>
+
 </html>
