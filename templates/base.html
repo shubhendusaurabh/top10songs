@@ -132,11 +132,14 @@
         {% block content %} {% endblock %}
         <div class="row text-center">
             <p>
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" class="share facebook"><span class="fa fa-facebook"></span></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"
+        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="share facebook"><span class="fa fa-facebook"></span></a>
 
-                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri|urlencode }}&text=Top+10+Songs&hashtags=top10songs" class="share twitter"><span class="fa fa-twitter"></span></a>
+                <a href="http://twitter.com/share?text={{ title|default:'Top 10 Songs' }}&url={{ request.build_absolute_uri|urlencode }}&hashtags=top10songs"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="share twitter"><span class="fa fa-twitter"></span></a>
 
-                <a href="https://plus.google.com/share?url={{ request.build_absolute_uri|urlencode }}" class="share google-plus"><span class="fa fa-google"></span></a>
+                <a  class="share google-plus" href="https://plus.google.com/share?url={{ request.build_absolute_uri|urlencode }}"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><span class="fa fa-google"></span></a>
             </p>
         </div>
         <hr>
@@ -158,49 +161,6 @@
         window.jQuery || document.write('<script src={% static "js/jquery.min.js" %}>')
     </script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script>
-        // create social networking pop-ups
-        (function () {
-            // link selector and pop-up window size
-            var Config = {
-                Link: "a.share",
-                Width: 500,
-                Height: 500
-            };
-
-            // add handler links
-            var slink = document.querySelectorAll(Config.Link);
-            for (var a = 0; a < slink.length; a++) {
-                slink[a].onclick = PopupHandler;
-            }
-
-            // create popup
-            function PopupHandler(e) {
-
-                e = (e ? e : window.event);
-                var t = (e.target ? e.target : e.srcElement);
-
-                // popup position
-                var
-                    px = Math.floor(((screen.availWidth || 1024) - Config.Width) / 2),
-                    py = Math.floor(((screen.availHeight || 700) - Config.Height) / 2);
-
-                // open popup
-                var popup = window.open(t.href, "social",
-                    "width=" + Config.Width + ",height=" + Config.Height +
-                    ",left=" + px + ",top=" + py +
-                    ",location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1");
-                if (popup) {
-                    popup.focus();
-                    if (e.preventDefault) e.preventDefault();
-                    e.returnValue = false;
-                }
-
-                return !!popup;
-            }
-
-        }());
-    </script>
     {% endblock %}
 </body>
 
