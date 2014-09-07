@@ -1,15 +1,17 @@
 {% load staticfiles %}{% load extra_tags %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">{% block meta_tags %}
-    <meta name="description" content="Get Top 10 Songs/Music Chart of the Week, Month, Year for Free">
-    <meta name="keywords" content='hindi songs, english songs, top 10 hindi songs, top 10 english songs, top 10 songs hindi, top 10 songs english, top 10 songs, song charts, top 10 songs of the week, top 10 songs of the year, top 10 downloaded songs, top 10 streamed songs, top 10 songs this week, top 10 songs of the month, top ten songs, free songs download'>{% endblock meta_tags %}
-    <meta name="author" content="Admin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta_tags %}
+    <meta name="description" content="Top 10 Hindi and English Songs of the Week. Listen/Watch to Hottest Songs of this week here for free. Songs are ranked on based on their popularity every week. Listen/Watch/Share your favourite Songs here. No credit card required.">
+    <meta name="keywords" content='top 10 songs, top 10 hindi songs, top 10 english songs, top 10 songs hindi, top 10 songs english, song charts, top 10 songs of the week, top 10 songs of the year, top 10 downloaded songs, top 10 songs this week, top 10 songs of the month, top ten songs, latest hindi songs, latest english songs, music charts, top 40 songs, top 20 songs, top 100 songs, new songs, uk top 10, best songs, best music, top hits, good songs, latest music, itunes top 10, top 10 bollywood songs, billboard'>
+    {% endblock meta_tags %}
+    <meta name="author" content="Anonymous">
+    <meta name="robots" content="all" />
     <link type="application/atom+xml" rel="alternate" href="{% url 'feeds' %}" />
-    <title>{% block title %}Welcome{% endblock %} | Top 10 Songs</title>
+    <title>{% block title %}Home{% endblock %} | Top 10 Songs</title>
     <link href="//netdna.bootstrapcdn.com/bootswatch/3.2.0/readable/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
     <link rel='shortcut icon' href="{% static 'img/favicon.ico' %}" type="image/x-icon">
@@ -25,7 +27,6 @@
             border-radius: 2px;
             font-size: 1.5em;
         }
-
         .facebook,
         .twitter,
         .google-plus {
@@ -63,7 +64,6 @@
             a.src = g;
             m.parentNode.insertBefore(a, m)
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
         ga('create', 'UA-48464765-1', 'top10songs.co.in');
         ga('send', 'pageview');
     </script>

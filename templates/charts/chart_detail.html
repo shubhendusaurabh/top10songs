@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
-{% block title %}{{ object.week }}{% endblock %}
+{% block title %}{{ object.week }} {{ chart.get_language_display }} Charts{% endblock %}
 {% block meta_tags %}
-  <meta name="description" content='Watch/Listen to Top 10 Songs of {{ chart.week }}  for free on YouTube. Find other top songs.' >
-  <meta name="keywords" content='top 10 songs, {{ chart.week|date:"F" }} songs, top songs of this week., top 10 hindi songs, top 10 english songs'>
+  <meta name="description" content='Watch/Listen to Top 10 Songs of {{ chart.week }} here.Top songs for the week are {% for song in object.songs.all %}{{ song.name}}, {%endfor%}' >
+  <meta name="keywords" content='top 10 songs, {{ chart.week|date:"F" }} songs, top songs of this week., top 10 {{ object.get_language_display }} songs, top 10 songs {{ object.get_language_display }}, top 10 songs of {{ chart.week|date:"Y" }}, best songs of {{ chart.week|date:"Y" }}, top ten songs, billboard hot 100, {% for song in object.songs.all %}{{ song.name}},{%endfor%}'>
 {% endblock meta_tags %}
 {% block content %}
-<div class="panel panel-info text-center">
+<div class="panel panel-info text-center" itemscope itemtype="http://schema.org/MusicGroup">
     <!-- Default panel contents -->
     <div class="panel-heading">
-        <h2>{{ object.week }} <small>({{ object.get_language_display }})</small></h2>
+        <h1 itemprop="name">Top 10 {{ chart.get_language_display }} Songs <small>({{ chart.week }})</small></h1>
     </div>
     <!-- List group -->
-    <div class="list-group">
+    <div class="list-group" >
         {% for song in object.songs.all %}
-        <article class="list-group-item center-block" itemtype="http://schema.org/MusicRecording" itemscope itemprop="track">
+        <article class="list-group-item center-block" itemtype="http://schema.org/MusicRecording" itemscope itemprop="tracks">
             <div class="row">
                 <div class="col-md-4">
                     <header>
@@ -22,7 +22,7 @@
                     </header>
                 </div>
                 <div class="col-md-4">
-                    <a href="{% url 'song_detail' song.id %}" itemprop="url">
+                    <a href="{% url 'song_detail' song.id %}" itemprop="audio">
                         <img class="img-thumbnail" alt="{{ song.name }}" src="http://i.ytimg.com/vi/{{ song.youtube_id }}/default.jpg">
                     </a>
                 </div>
@@ -31,13 +31,27 @@
                         {% if song.album %}
                         <p>Album: <span itemprop="inAlbum"><strong>{{ song.album }}</strong></span>
                         </p>
-                        {% endif %} {% if song.artist %}
+                        {% endif %} 
+                        {% if song.artist %}
                         <p>Artist: <span itemprop="byArtist"><strong>{{ song.artist }}</strong></span>
                         </p>
-                        {% endif %} {% if song.publisher %}
+                        {% endif %} 
+                        {% if song.publisher %}
                         <p>Publisher: <span itemprop="publisher"><strong>{{ song.publisher }}</strong></span>
                         </p>
                         {% endif %}
+                        <meta itemprop="duration" content="PT5M0S" />
+                        <meta itemprop="interactionCount" content="UserPlays:15000"/>
+                        <div>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.top10songs.co.in{{ song.get_absolute_url|urlencode }}"
+            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="facebook"><span class="fa fa-facebook"></span></a>
+                                
+                                <a href="http://twitter.com/share?text={{ song.name|default:'Top 10 Songs' }}&url=http%3A//www.top10songs.co.in{{ song.get_absolute_url|urlencode }}&hashtags=top10songs"
+            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="twitter"><span class="fa fa-twitter"></span></a>
+                                
+                                <a href="https://plus.google.com/share?url=http%3A//www.top10songs.co.in{{ song.get_absolute_url|urlencode }}"
+           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" class="google-plus"><span class="fa fa-google-plus"></span></a>
+                        </div>
                     </div>
                 </div>
             </div>

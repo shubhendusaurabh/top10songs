@@ -8,13 +8,11 @@
     <div class="col-xs-12 col-sm-offset-2 col-sm-8">
         {% for chart in latest_charts %}
         <div class="text-center">
-            <!-- Default panel contents -->
-
-            <h1>{{ chart.week }} <small>({{ chart.get_language_display }})</small></h1>
-            <ul class="song-list">
-            {% for song in chart.songs.all %}
             
-                <li itemtype="http://schema.org/MusicRecording" itemscope itemprop="track">
+            <ul class="song-list" itemscope itemtype="http://schema.org/MusicGroup">
+            <h1 itemprop="name">Top 10 {{ chart.get_language_display }} Songs <small>({{ chart.week }})</small></h1>
+            {% for song in chart.songs.all %}
+                <li itemtype="http://schema.org/MusicRecording" itemscope itemprop="tracks">
                     <time>
                         <span class="position">#{{ forloop.counter }}</span>
                     </time>
@@ -33,6 +31,8 @@
                         <p class="desc">Publisher: <span itemprop="publisher"><strong>{{ song.publisher }}</strong></span>
                         </p>
                         {% endif %}
+                        <meta itemprop="duration" content="PT5M0S" />
+                        <meta itemprop="interactionCount" content="UserPlays:15000"/>
                     </div>
                     <div class="social">
                         <ul>
@@ -42,7 +42,7 @@
                             <li class="twitter" style="width:34%;"><a href="http://twitter.com/share?text={{ song.name|default:'Top 10 Songs' }}&url=http%3A//www.top10songs.co.in{{ song.get_absolute_url|urlencode }}&hashtags=top10songs"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><span class="fa fa-twitter"></span></a>
                             </li>
-                            <li class="google-plus" style="width:33%;"><a href="https://plus.google.com/share?url={{ request.build_absolute_uri|urlencode }}"
+                            <li class="google-plus" style="width:33%;"><a href="https://plus.google.com/share?url=http%3A//www.top10songs.co.in{{ song.get_absolute_url|urlencode }}"
        onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><span class="fa fa-google-plus"></span></a>
                             </li>
                         </ul>
