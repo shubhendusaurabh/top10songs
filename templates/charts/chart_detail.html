@@ -17,8 +17,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <header>
-                        <h2 class="list-group-item-heading"><span class="label label-default">#{{ forloop.counter }}</span></h2>
-                        <h3 itemprop="name"><a href="{% url 'song_detail' song.id %}" itemprop="url">{{ song.name }}</a></h3>
+                        <h3 class="list-group-item-heading"><span class="label label-default">#{{ forloop.counter }}</span></h3>
+                        <h2 itemprop="name"><a href="{% url 'song_detail' song.id %}" itemprop="url">{{ song.name }}</a></h2>
                     </header>
                 </div>
                 <div class="col-md-4">
