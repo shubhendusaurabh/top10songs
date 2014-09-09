@@ -12,8 +12,12 @@ class Chart(models.Model):
         ('PJ', 'Punjabi'),
     )
     language = models.CharField(max_length=2, choices=LANGUAGES)
+    songs = models.ManyToManyField('Song', through='Ranking')
     week = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_songs(self):
+        return self.songs.order_by('song')
 
     class Meta:
         ordering = ['-week']
@@ -26,11 +30,6 @@ class Chart(models.Model):
     def __unicode__(self):
         return '%s' % (self.week)
 
-    def scrap_songs_init(self):
-        return mark_safe('<img class="loading" src="/static/img/loading.gif" alt="loading" style="display:none;" /><a class="task"><span class="glyphicon glyphicon-star"></span>Load</a>')
-    scrap_songs_init.allow_tags = True
-    scrap_songs_init.short_description = ('Scrap Songs')
-
 
 class Song(models.Model):
     name = models.CharField(max_length=255)
@@ -38,7 +37,6 @@ class Song(models.Model):
     album = models.CharField(max_length=255, blank=True)
     youtube_id = models.CharField(max_length=255, blank=True)
     publisher = models.CharField(max_length=255, blank=True)
-    chart = models.ForeignKey(Chart, related_name='songs')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -51,3 +49,12 @@ class Song(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('song_detail', [int(self.pk)])
+
+
+class Ranking(models.Model):
+    song = models.ForeignKey(Song, related_name='song')
+    chart = models.ForeignKey(Chart)
+    position = models.PositiveSmallIntegerField()
+
+    class Meta:
+        ordering = ('position',)
