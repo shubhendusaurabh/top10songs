@@ -4,7 +4,6 @@ from django.views.generic.dates import ArchiveIndexView, YearArchiveView, MonthA
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
-# Create your views here.
 
 from .models import Chart, Song
 
@@ -15,7 +14,7 @@ class ChartArchiveIndexView(ArchiveIndexView):
 
     def get_context_data(self, **kwargs):
         context = super(ChartArchiveIndexView, self).get_context_data(**kwargs)
-        charts = Chart.objects.prefetch_related('songs')
+        charts = Chart.objects.all()
         archive = {}
 
         years = charts.dates(self.date_field, 'year')[::-1]
@@ -30,21 +29,21 @@ class ChartArchiveIndexView(ArchiveIndexView):
 
 
 class ChartYearArchiveView(YearArchiveView):
-    queryset = Chart.objects.prefetch_related('songs')
+    queryset = Chart.objects.all()
     date_field = 'week'
     make_object_list = True
     allow_future = True
 
 
 class ChartMonthArchiveView(MonthArchiveView):
-    queryset = Chart.objects.prefetch_related('songs')
+    queryset = Chart.objects.all()
     date_field = 'week'
     make_object_list = True
     allow_future = True
 
 
 class ChartWeekArchiveView(WeekArchiveView):
-    queryset = Chart.objects.prefetch_related('songs')
+    queryset = Chart.objects.all()
     date_field = 'week'
     make_object_list = True
     week_format = "%W"
@@ -52,7 +51,7 @@ class ChartWeekArchiveView(WeekArchiveView):
 
 
 class ChartDayArchiveView(DayArchiveView):
-    queryset = Chart.objects.prefetch_related('songs')
+    queryset = Chart.objects.all()
     date_field = "week"
     month_format = "%m"
     make_object_list = True
@@ -60,14 +59,14 @@ class ChartDayArchiveView(DayArchiveView):
 
 
 class ChartTodayArchiveView(TodayArchiveView):
-    queryset = Chart.objects.prefetch_related('songs')
+    queryset = Chart.objects.all()
     date_field = 'week'
     make_object_list = True
     allow_future = True
 
 
 class ChartDateDetailView(DateDetailView):
-    queryset = Chart.objects.prefetch_related('songs')
+    queryset = Chart.objects.all()
     date_field = 'week'
     make_object_list = True
     allow_future = True
@@ -96,7 +95,7 @@ class ChartListView(ListView):
 class SongListView(ListView):
     model = Song
     paginate_by = 20
-    queryset = Song.objects.order_by('name').distinct('name')
+    queryset = Song.objects.order_by('name')
 
 
 class HomePageView(TemplateView):
@@ -104,5 +103,5 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        context['latest_charts'] = Chart.objects.prefetch_related('songs')[:2]
+        context['latest_charts'] = Chart.objects.all()[:2]
         return context

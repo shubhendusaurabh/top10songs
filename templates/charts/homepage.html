@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
-{% load static extra_tags %} 
+{% load static extra_tags %}
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-{% endblock stylesheets %} 
+{% endblock stylesheets %}
 {% block content %}
 <div class="row">
     <div class="col-xs-12 col-sm-offset-2 col-sm-8">
         {% for chart in latest_charts %}
         <div class="text-center">
-            
+
             <ul class="song-list" itemscope itemtype="http://schema.org/MusicGroup">
             <h1 itemprop="name">Top 10 {{ chart.get_language_display }} Songs <small>({{ chart.week }})</small></h1>
-            {% for song in chart.songs.all %}
+            {% for song in chart.get_songs %}
                 <li itemtype="http://schema.org/MusicRecording" itemscope itemprop="tracks">
                     <time>
                         <span class="position">#{{ forloop.counter }}</span>
@@ -48,7 +48,7 @@
                         </ul>
                     </div>
                 </li>
-            
+
             {% endfor %}
             </ul>
         </div>
