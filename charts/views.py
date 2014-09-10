@@ -15,7 +15,7 @@ class ChartArchiveIndexView(ArchiveIndexView):
 
     def get_context_data(self, **kwargs):
         context = super(ChartArchiveIndexView, self).get_context_data(**kwargs)
-        charts = Chart.objects.select_related()
+        charts = Chart.objects.prefetch_related('songs')
         archive = {}
 
         years = charts.dates(self.date_field, 'year')[::-1]
@@ -30,21 +30,21 @@ class ChartArchiveIndexView(ArchiveIndexView):
 
 
 class ChartYearArchiveView(YearArchiveView):
-    queryset = Chart.objects.select_related()
+    queryset = Chart.objects.prefetch_related('songs')
     date_field = 'week'
     make_object_list = True
     allow_future = True
 
 
 class ChartMonthArchiveView(MonthArchiveView):
-    queryset = Chart.objects.select_related()
+    queryset = Chart.objects.prefetch_related('songs')
     date_field = 'week'
     make_object_list = True
     allow_future = True
 
 
 class ChartWeekArchiveView(WeekArchiveView):
-    queryset = Chart.objects.select_related()
+    queryset = Chart.objects.prefetch_related('songs')
     date_field = 'week'
     make_object_list = True
     week_format = "%W"
@@ -52,7 +52,7 @@ class ChartWeekArchiveView(WeekArchiveView):
 
 
 class ChartDayArchiveView(DayArchiveView):
-    queryset = Chart.objects.select_related()
+    queryset = Chart.objects.prefetch_related('songs')
     date_field = "week"
     month_format = "%m"
     make_object_list = True
@@ -60,21 +60,21 @@ class ChartDayArchiveView(DayArchiveView):
 
 
 class ChartTodayArchiveView(TodayArchiveView):
-    queryset = Chart.objects.select_related()
+    queryset = Chart.objects.prefetch_related('songs')
     date_field = 'week'
     make_object_list = True
     allow_future = True
 
 
 class ChartDateDetailView(DateDetailView):
-    queryset = Chart.objects.select_related()
+    queryset = Chart.objects.prefetch_related('songs')
     date_field = 'week'
     make_object_list = True
     allow_future = True
 
 
 class ChartDetailView(DetailView):
-    queryset = Chart.objects.select_related()
+    queryset = Chart.objects.prefetch_related('songs')
 
 
 class SongDetailView(DetailView):
@@ -104,5 +104,5 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        context['latest_charts'] = Chart.objects.select_related()[:2]
+        context['latest_charts'] = Chart.objects.prefetch_related('songs')[:2]
         return context
