@@ -2,7 +2,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 
-# Create your models here.
+from django_extensions.db.models import AutoSlugField
 
 
 class Chart(models.Model):
@@ -33,6 +33,7 @@ class Chart(models.Model):
 
 class Song(models.Model):
     name = models.CharField(max_length=255)
+    slug = AutoSlugField(populate_from='name', null=True)
     artist = models.CharField(max_length=255, blank=True)
     album = models.CharField(max_length=255, blank=True)
     youtube_id = models.CharField(max_length=255, blank=True)
