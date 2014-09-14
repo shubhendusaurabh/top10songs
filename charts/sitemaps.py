@@ -1,9 +1,8 @@
-from django.contrib import sitemaps
-from django.core.urlresolvers import reverse
-from .models import Song, Chart
+from django.contrib.sitemaps import Sitemap
+from .models import Chart
 
 
-class ChartSitemap(sitemaps.Sitemap):
+class ChartSitemap(Sitemap):
     changefreq = "never"
     priority = 0.5
 
