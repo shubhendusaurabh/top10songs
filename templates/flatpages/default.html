@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
+
 {% block title %}
 {{ flatpage.title }}
 {% endblock %}
+
+{% block meta_tags %}
+<meta name="description" content='Watch/Listen to top songs by top artists of top albums for free on YouTube. {{ flatpage.title }} Top 10 Songs.'>
+<meta name="keywords" content='top 10 songs, top 10 hindi songs, top 10 english songs, {{ flatpage.title }}'>
+{% endblock %}
+
 {% block content %}
 <h1>{{ flatpage.title }}</h1>
 {{ flatpage.content }}
