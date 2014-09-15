@@ -1,6 +1,5 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-from django.utils.safestring import mark_safe
 
 from django_extensions.db.models import AutoSlugField
 
@@ -22,10 +21,8 @@ class Chart(models.Model):
     class Meta:
         ordering = ['-week']
 
-    @models.permalink
     def get_absolute_url(self):
-        # return reverse('chart_detail', kwargs={'pk': self.pk})
-        return ('chart_detail', [int(self.pk)])
+        return reverse('chart_detail', kwargs={'pk': self.pk})
 
     def __unicode__(self):
         return '%s' % (self.week)
@@ -47,9 +44,8 @@ class Song(models.Model):
     def __unicode__(self):
         return '%s by %s' % (self.name, self.artist)
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('song_detail', [int(self.pk)])
+        return reverse('song_detail', kwargs={'pk': int(self.pk), 'slug': self.slug})
 
 
 class Ranking(models.Model):

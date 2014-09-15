@@ -20,7 +20,7 @@
                     <img alt="{{ song.name }}" src="http://i.ytimg.com/vi/{{ song.youtube_id }}/default.jpg">
 
                     <div class="info">
-                        <h2 class="title" itemprop="name"><a href="{% url 'song_detail' song.id %}" itemprop="url">{{ song.name }}</a></h2>
+                        <h2 class="title" itemprop="name"><a href="{{ song.get_absolute_url }}" itemprop="url">{{ song.name }}</a></h2>
                         {% if song.album %}
                         <p class="desc">Album: <span itemprop="inAlbum"><strong>{{ song.album }}</strong></span>
                         </p>

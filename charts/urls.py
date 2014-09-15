@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, url
 from django.views.generic.dates import *
-from .models import *
 from .views import *
 from .feeds import LatestChartsFeeds
 
@@ -42,7 +41,7 @@ urlpatterns = patterns('',
                            ChartListView.as_view(),
                            name='chart_list'),
                        # Songs
-                       url(r'^song/(?P<pk>\d+)/$',
+                       url(r'^song/(?P<pk>\d+)/(?P<slug>[\w-]+)/$',
                            SongDetailView.as_view(),
                            name='song_detail'),
                        # url(r'^songs/english/$',

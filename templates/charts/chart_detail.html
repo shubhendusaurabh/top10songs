@@ -18,11 +18,11 @@
                 <div class="col-md-4">
                     <header>
                         <h3 class="list-group-item-heading"><span class="label label-default">#{{ forloop.counter }}</span></h3>
-                        <h2 itemprop="name"><a href="{% url 'song_detail' song.id %}" itemprop="url">{{ song.name }}</a></h2>
+                        <h2 itemprop="name"><a href="{{ song.get_absolute_url }}" itemprop="url">{{ song.name }}</a></h2>
                     </header>
                 </div>
                 <div class="col-md-4">
-                    <a href="{% url 'song_detail' song.id %}" itemprop="audio">
+                    <a href="{{ song.get_absolute_url }}" itemprop="audio">
                         <img class="img-thumbnail" alt="{{ song.name }}" src="http://i.ytimg.com/vi/{{ song.youtube_id }}/default.jpg" itemprop="image">
                     </a>
                 </div>
