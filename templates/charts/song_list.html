@@ -1,33 +1,40 @@
 {% extends 'base.html' %}
 {% block title %}All Songs{% endblock %}
 {% block content %}
-<div class="panel panel-info">
-    <div class="panel-heading">All Songs List</div>
-    <ul class="list-group">
-        {% for song in object_list %}
-        <li class="list-group-item"><a href='{{ song.get_absolute_url }}'> {{ song.name }}</a>
+<div class="row text-center">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+    <div class="panel panel-info">
+        <div class="panel-heading">All Songs List</div>
+        <ul class="list-group">
+            {% for song in object_list %}
+            <li class="list-group-item"><a href='{{ song.get_absolute_url }}'> {{ song.name }} by {{ song.artist|default:'N/A' }}</a>
+            </li>
+            {% empty %}
+            <li>No Songs Found</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% if is_paginated %}
+
+    <ul class="pagination">
+
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a>
         </li>
-        {% empty %}
-        <li>No Songs Found</li>
-        {% endfor %}
+        {% endif %} {% for i in paginator.page_range %} {% if page_obj.has_next %}
+        <li><a href="?page={{i}}">{{i}}</a>
+        </li>
+        {% endif %} {% endfor %} {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+        {% endif %}
+
     </ul>
-</div>
-{% if is_paginated %}
 
-<ul class="pagination">
-
-    {% if page_obj.has_previous %}
-    <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a>
-    </li>
-    {% endif %} {% for i in paginator.page_range %} {% if page_obj.has_next %}
-    <li><a href="?page={{i}}">{{i}}</a>
-    </li>
-    {% endif %} {% endfor %} {% if page_obj.has_next %}
-    <li><a href="?page={{ page_obj.next_page_number }}">Next</a>
-    </li>
     {% endif %}
-
-</ul>
-
-{% endif %}
+   </div>
+    <div class="col-md-2"></div>
+</div>
 {% endblock %}

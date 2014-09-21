@@ -84,12 +84,15 @@ class ChartListView(ListView):
     language = ""
     model = Chart
     paginate_by = 20
-
-    def get_queryset(self):
+    
+    def get_context_data(self, **kwargs):
+        context = super(ChartListView, self).get_context_data(**kwargs)
         if self.language:
-            return Chart.objects.filter(language=self.language)
+            context['charts'] = Chart.objects.filter(language=self.language)
+            context['language'] = dict(Chart.LANGUAGES)[self.language]
         else:
-            return Chart.objects.all()
+            context['charts'] = Chart.objects.all()
+        return context
 
 
 class SongListView(ListView):
