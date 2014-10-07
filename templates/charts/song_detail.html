@@ -27,8 +27,7 @@
             <p>Publisher: <span itemprop="publisher"><strong>{{ song.publisher }}</strong></span>
             </p>
             {% endif %}
-            <p>On Chart: <strong>{{ song.created_at|date:"F j, Y" }}</strong>
-            </p>
+            <meta itemprop="datePublished" content={{ song.created_at }} />
             <meta itemprop="duration" content="PT5M0S" />
         </div>
         <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
@@ -40,6 +39,17 @@
                     <iframe src="//www.youtube-nocookie.com/embed/{{ song.youtube_id }}" class="embed-responsive-item" allowfullscreen></iframe>
                 </div>
             </section>
+        </div>
+        <div class="row">
+            <h3>Chart Date <span class="pull-right">Position</span></h3>
+                <div class="list-group">
+                {% for ranking in song.song.select_related %}
+                <a class="list-group-item" href="{{ ranking.chart.get_absolute_url }}">
+                        <span class="badge">{{ ranking.position }}</span>
+                        Top 10 {{ ranking.chart.get_language_display}} Songs in {{ ranking.chart.week|date }}
+                    </a>
+                {% endfor %}
+                </div>
         </div>
     </article>
     <div class="col-md-2"></div>
