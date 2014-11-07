@@ -2,6 +2,7 @@ from urllib2 import urlopen
 from urllib import urlencode
 import datetime
 import json
+from django.core.exceptions import MultipleObjectsReturned
 from bs4 import BeautifulSoup
 from charts.models import Chart, Song, Ranking
 from .billboard import fetchEntries
@@ -37,12 +38,16 @@ def scrap_eng_songs():
     songs = doc.findAll("td", "left")
     c = init_chart("EN")
     for i in range(0, 20, 2):
-        s = Song()
-        s.name = songs[i].text.strip()
-        s.artist = songs[i + 1].text.strip()
-        s.youtube_id = get_youtube_id(s.name)
-        s.chart = c
-        s.save()
+        name = songs[i].text.strip()
+        artist = songs[i+1].text.strip()
+        try:
+            s, created = Song.objects.get_or_create(name=name, artist=artist)
+        except MultipleObjectsReturned:
+            s = Song.objects.filter(name=name, artist=artist).first()
+        if created:
+            s.youtube_id = get_youtube_id(s.name)
+            s.save()
+        Ranking.objects.create(song=s, chart=c, position=(i/2)+1)
 
 
 def scrap_eng_songs_new():
