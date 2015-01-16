@@ -29,11 +29,11 @@
                 <div class="col-md-4">
                     <div>
                         {% if song.album %}
-                        <p>Album: <span itemprop="inAlbum"><strong>{{ song.album }}</strong></span>
+                        <p>Album: <span itemprop="inAlbum"><strong><a href="{% url 'search' %}?q={{ song.album }}">{{ song.album }}</a></strong></span>
                         </p>
                         {% endif %}
                         {% if song.artist %}
-                        <p>Artist: <span itemprop="byArtist"><strong>{{ song.artist }}</strong></span>
+                        <p>Artist: <span itemprop="byArtist"><strong><a href="{% url 'search' %}?q={{ song.artist }}">{{ song.artist }}</a></strong></span>
                         </p>
                         {% endif %}
                         {% if song.publisher %}

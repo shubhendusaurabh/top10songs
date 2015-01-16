@@ -14,7 +14,7 @@ def search_function(q):
     if q:
         items = Song.objects.select_related().filter(
             Q(name__icontains=q) |
-            Q(artist__startswith=q.lower()) |
+            Q(artist__icontains=q.lower()) |
             Q(album__icontains=q))
     else:
         items = Song.objects.select_related()

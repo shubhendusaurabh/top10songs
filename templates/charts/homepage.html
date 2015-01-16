@@ -22,10 +22,10 @@
                     <div class="info">
                         <h2 class="title" itemprop="name"><a href="{{ song.get_absolute_url }}" itemprop="url">{{ song.name }}</a></h2>
                         {% if song.album %}
-                        <p class="desc">Album: <span itemprop="inAlbum"><strong>{{ song.album }}</strong></span>
+                        <p class="desc">Album: <span itemprop="inAlbum"><strong><a href="{% url 'search' %}?q={{ song.album }}">{{ song.album }}</a></strong></span>
                         </p>
                         {% endif %} {% if song.artist %}
-                        <p class="desc">Artist: <span itemprop="byArtist"><strong>{{ song.artist }}</strong></span>
+                        <p class="desc">Artist: <span itemprop="byArtist"><strong><a href="{% url 'search' %}?q={{ song.artist }}">{{ song.artist }}</a></strong></span>
                         </p>
                         {% endif %} {% if song.publisher %}
                         <p class="desc">Publisher: <span itemprop="publisher"><strong>{{ song.publisher }}</strong></span>
