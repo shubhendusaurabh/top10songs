@@ -45,10 +45,13 @@ def search(request):
     except Song.MultipleObjectsReturned:
         pass
         # TODO redirect to song
-
+    songs = search_function(q)
+    if songs.count() == 1:
+        song = songs.first()
+        return HttpResponseRedirect(song.get_absolute_url())
     form = SearchForm(request.GET or None)
 
-    return render(request, template_name, {'songs': search_function(q), 'form': form})
+    return render(request, template_name, {'songs': songs, 'form': form})
 
 
 def search_autocomplete(request):
