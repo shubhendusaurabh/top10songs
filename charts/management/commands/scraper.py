@@ -9,7 +9,7 @@ from .billboard import fetchEntries
 
 hindiURL = 'http://www.radiomirchi.com/more/mirchi-top-20/'
 engURL = 'http://top10songs.com/'
-YouTubeapi = 'http://gdata.youtube.com/feeds/api/videos/?v=2&alt=jsonc&paid-content=false&max-results=1&'
+YouTubeapi = 'https://www.googleapis.com/youtube/v3/search?'
 
 
 def make_soup(url):
@@ -26,11 +26,11 @@ def init_chart(language):
 
 
 def get_youtube_id(songName):
-    query_args = {'q': songName}
+    query_args = {'q': songName, 'part': 'id', 'key': 'AIzaSyATgfTV-ImD97mi2BWtIq19jmbSj8B_eR4'}
     encoded_args = urlencode(query_args)
     response = urlopen(YouTubeapi + encoded_args).read()
     parsed_response = json.loads(response)
-    return parsed_response['data']['items'][0]['id']
+    return parsed_response['items'][0]['id']['videoId']
 
 
 def scrap_eng_songs():
