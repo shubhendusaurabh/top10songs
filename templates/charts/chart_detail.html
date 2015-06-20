@@ -3,7 +3,7 @@
 {% block title %}{{ object.week }} {{ chart.get_language_display }} Charts{% endblock %}
 {% block meta_tags %}
   <meta name="description" content='Watch/Listen to Top 10 Songs of {{ chart.week }} here.Top songs for the week are {% for song in object.songs.all %}{{ song.name}}, {% endfor %}' >
-  <meta name="keywords" content='top 10 songs, {{ chart.week|date:"F" }} songs, top songs of this week., top 10 {{ object.get_language_display }} songs, top 10 songs {{ object.get_language_display }}, top 10 songs of {{ chart.week|date:"Y" }}, best songs of {{ chart.week|date:"Y" }}, top ten songs, billboard hot 100, {% for song in object.songs.all %}{{ song.name}},{% endfor %}'>
+  <meta name="keywords" content='top 10 {{ object.get_language_display }} songs, top 10 songs of {{ chart.week|date:"Y" }}, best songs of {{ chart.week|date:"Y" }}, top ten songs, {% for song in object.songs.all %}{{ song.name}},{% endfor %}'>
 {% endblock meta_tags %}
 {% block twitterCard %}
     <meta name="twitter:card" content="summary">
