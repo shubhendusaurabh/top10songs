@@ -8,8 +8,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:url" content="www.top10songs.co.in{{ chart.get_absolute_url }}">
     <meta name="twitter:title" content="{{ object.week }} {{ chart.get_language_display }} Charts">
-    <meta name="twitter:description" content="Watch/Listen to Top 10 Songs of {{ chart.week }} here.Top songs for the week are {% for song in object.songs.all %}{{ song.name}}, {% endfor %}">
-    <meta name="twitter:image" content="http://i.ytimg.com/vi/{{ song.youtube_id }}/default.jpg">
+    <meta name="twitter:description" content="Top songs for the week are {% for song in object.songs.all %}{{ song.name}}, {% endfor %}">
     <meta name="twitter:site" content="@top10songsin">
     <meta name="twitter:creator" content="@top10songsin">
 {% endblock twitterCard %}

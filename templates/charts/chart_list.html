@@ -9,7 +9,7 @@
             <div class="panel-heading">All Charts List</div>
             <ul class="list-group">
                 {% for chart in charts %}
-                <li class="list-group-item">Top 10 {{ chart.get_language_display }} Songs in<a href='{{ chart.get_absolute_url }}'> {{ chart.week|date }}</a>
+                <li class="list-group-item">Top 10 {{ chart.get_language_display }} Songs in <a href='{{ chart.get_absolute_url }}'> {{ chart.week|date }}</a>
                 </li>
                 {% empty %}
                 <li>No Chart Found</li>

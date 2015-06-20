@@ -4,11 +4,17 @@
 {{ song.name }} {% if song.artist %}by {{ song.artist }} {% endif %} {% if song.album %} from {{ song.album }} {% endif %}
 {% endblock %}
 {% block twitterCard %}
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="player">
     <meta name="twitter:url" content="www.top10songs.co.in{{ song.get_absolute_url }}">
     <meta name="twitter:title" content="Top 10 Songs">
     <meta name="twitter:description" content="{{ song.name }} {% if song.artist %}by {{ song.artist }} {% endif %} {% if song.album %} from {{ song.album }} {% endif %}">
-    <meta name="twitter:image" content="http://i.ytimg.com/vi/{{ song.youtube_id }}/default.jpg">
+    <meta name="twitter:image" content="https://i.ytimg.com/vi/{{ song.youtube_id }}/maxresdefault.jpg">
+    <meta name="twitter:image:width" content="1280">
+    <meta name="twitter:image:height" content="720">
+
+    <meta name="twitter:player" content="https://www.youtube.com/embed/{{ song.youtube_id }}">
+    <meta name="twitter:player:width" content="1280">
+    <meta name="twitter:player:height" content="720">
     <meta name="twitter:site" content="@top10songsin">
     <meta name="twitter:creator" content="@top10songsin">
 {% endblock twitterCard %}
