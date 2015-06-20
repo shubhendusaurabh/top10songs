@@ -22,7 +22,10 @@
                         <a href='{{ song.get_absolute_url }}'>{{ song.name }}</a>
                     </td>
                     <td>
-                        <a href="{% url 'search' %}?q={{ song.artist }}">{{ song.artist }}</a>
+                        {% for artist in song.get_artists %}
+                        <a href="{% url 'search' %}?q={{ artist }}">{{ artist }}</a>
+                        {% if not forloop.last %}{% ifequal forloop.revcounter 2 %} and {% else %}, {% endifequal %}{% else %}{% endif %}
+                        {% endfor %}
                     </td>
                     <td>
                         <a href="{% url 'search' %}?q={{ song.album }}">{{ song.album }}</a>

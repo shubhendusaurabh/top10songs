@@ -49,7 +49,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.sitemaps',
-
+    'django.contrib.humanize',
     'charts',
     'search',
 )
