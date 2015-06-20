@@ -39,11 +39,14 @@
                     </strong>
                 </span>
             </p>
-            {% endif %} {% if song.artist %}
+            {% endif %} {% if song.get_artists %}
             <p>Artist: 
                 <span itemprop="byArtist">
                     <strong>
-                        <a href="{% url 'search' %}?q={{ song.artist }}">{{ song.artist }}</a>
+                        {% for artist in song.get_artists %}
+                        <a href="{% url 'search' %}?q={{ artist }}">{{ artist }}</a>
+                        {% if not forloop.last %}{% ifequal forloop.revcounter 2 %} and {% else %}, {% endifequal %}{% else %}{% endif %}
+                        {% endfor %}
                     </strong>
                 </span>
             </p>

@@ -1,3 +1,5 @@
+import re
+
 from django.db import models
 from django.core.urlresolvers import reverse
 
@@ -46,6 +48,10 @@ class Song(models.Model):
 
     def get_absolute_url(self):
         return reverse('song_detail', kwargs={'pk': int(self.pk), 'slug': self.slug})
+
+    def get_artists(self):
+        if self.artist:
+            return re.split(', |& |\Featuring\ ', self.artist)
 
 
 class Ranking(models.Model):

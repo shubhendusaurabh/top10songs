@@ -25,7 +25,12 @@
                         <p class="desc">Album: <span itemprop="inAlbum"><strong><a href="{% url 'search' %}?q={{ song.album }}">{{ song.album }}</a></strong></span>
                         </p>
                         {% endif %} {% if song.artist %}
-                        <p class="desc">Artist: <span itemprop="byArtist"><strong><a href="{% url 'search' %}?q={{ song.artist }}">{{ song.artist }}</a></strong></span>
+                        <p class="desc">Artist: <span itemprop="byArtist"><strong>
+                        {% for artist in song.get_artists %}
+                        <a href="{% url 'search' %}?q={{ artist }}">{{ artist }}</a>
+                        {% if not forloop.last %}{% ifequal forloop.revcounter 2 %} and {% else %}, {% endifequal %}{% else %}{% endif %}
+                        {% endfor %}
+                        </strong></span>
                         </p>
                         {% endif %} {% if song.publisher %}
                         <p class="desc">Publisher: <span itemprop="publisher"><strong>{{ song.publisher }}</strong></span>
