@@ -8,14 +8,24 @@
     <meta name="description" content="Top 10 Hindi and English Songs of the Week. Listen/Watch to Hottest Songs of this week here for free. Songs are ranked on based on their popularity every week. Listen/Watch/Share your favourite Songs here. No credit card required.">
     <meta name="keywords" content='top 10 songs, top 10 hindi songs, top 10 english songs, top 10 songs hindi, top 10 songs english, song charts, top 10 songs of the week, top 10 songs of the year, top 10 downloaded songs, top 10 songs this week, top 10 songs of the month, top ten songs, latest hindi songs, latest english songs, music charts, top 40 songs, top 20 songs, top 100 songs, new songs, uk top 10, best songs, best music, top hits, good songs, latest music, itunes top 10, top 10 bollywood songs, billboard'>
     {% endblock meta_tags %}
-    <meta name="author" content="Anonymous">
+    <meta name="author" content="@top10songsin">
     <meta name="robots" content="all" />
+    {% block twitterCard %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="www.top10songs.co.in{% url 'homepage' %}">
+    <meta name="twitter:title" content="Top 10 Songs">
+    <meta name="twitter:description" content="Top 10 Hindi and English Songs of the Week. Exclusive/Pre-released songs by top artists you don't get to see any where else.">
+    <meta name="twitter:image" content="{% static 'img/musical-note.png' %}">
+    <meta name="twitter:site" content="@top10songsin">
+    <meta name="twitter:creator" content="@top10songsin">
+    {% endblock twitterCard %}
     <link type="application/atom+xml" rel="alternate" href="{% url 'feeds' %}" />
     <title>{% block title %}Home{% endblock %} | Top 10 Songs</title>
     <link href="//netdna.bootstrapcdn.com/bootswatch/3.2.0/readable/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
     <link rel='shortcut icon' href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-    <link rel='icon' href='{% static "img/favicon.ico" %}' type='image/x-icon'>{% block stylesheets %}{% endblock %}
+    <link rel='icon' href='{% static "img/favicon.ico" %}' type='image/x-icon'>
+    {% block stylesheets %}{% endblock %}
     <style>
         body {
             padding-bottom: 20px;
