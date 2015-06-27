@@ -61,3 +61,31 @@ class Ranking(models.Model):
 
     class Meta:
         ordering = ('position',)
+
+
+class CustomChart(models.Model):
+    about = models.CharField(max_length=255)
+    slug = AutoSlugField(populate_from='about')
+    songs = models.ManyToManyField('Song', through='CustomRanking')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_songs(self):
+        return self.songs.order_by('song')
+
+    def get_absolute_url(self):
+        return reverse('custom_chart_detail', kwargs={'slug': self.slug})
+
+    def __unicode__(self):
+        return '%s' % (self.about)
+
+
+class CustomRanking(models.Model):
+    song = models.ForeignKey(Song, related_name='customsong')
+    chart = models.ForeignKey(CustomChart)
+    position = models.PositiveSmallIntegerField()
+
+    class Meta:
+        ordering = ('position',)
+
+    def __unicode__(self):
+        return '%s %s' % (self.position, self.song)

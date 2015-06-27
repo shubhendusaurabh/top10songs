@@ -1,12 +1,13 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
-from charts.sitemaps import ChartSitemap, SongSitemap
+from charts.sitemaps import ChartSitemap, SongSitemap, CustomChartSitemap
 admin.autodiscover()
 
 sitemaps = {
     'chart': ChartSitemap,
-    'song': SongSitemap
+    'song': SongSitemap,
+    'custom': CustomChartSitemap
 }
 urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),

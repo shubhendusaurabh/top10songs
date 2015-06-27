@@ -31,3 +31,5 @@ class ChartAdmin(admin.ModelAdmin):
 
 admin.site.register(Chart, ChartAdmin)
 admin.site.register(Song)
+admin.site.register(CustomChart)
+admin.site.register(CustomRanking)

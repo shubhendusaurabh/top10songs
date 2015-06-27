@@ -5,7 +5,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
 
-from .models import Chart, Song
+from .models import Chart, Song, CustomChart
 
 
 class ChartArchiveIndexView(ArchiveIndexView):
@@ -108,3 +108,6 @@ class HomePageView(TemplateView):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['latest_charts'] = Chart.objects.all()[:2]
         return context
+
+class CustomChartDetailView(DetailView):
+    queryset = CustomChart.objects.prefetch_related('songs')
