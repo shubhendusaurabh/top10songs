@@ -84,7 +84,7 @@ class ChartListView(ListView):
     language = ""
     model = Chart
     paginate_by = 20
-    
+
     def get_context_data(self, **kwargs):
         context = super(ChartListView, self).get_context_data(**kwargs)
         if self.language:

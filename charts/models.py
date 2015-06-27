@@ -70,7 +70,7 @@ class CustomChart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def get_songs(self):
-        return self.songs.order_by('song')
+        return self.songs.order_by('customsong')
 
     def get_absolute_url(self):
         return reverse('custom_chart_detail', kwargs={'slug': self.slug})
