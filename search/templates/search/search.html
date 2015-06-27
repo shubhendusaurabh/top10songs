@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block meta_tags %}
+    <meta name="description" content="Songs in our database about {{ form.q.value }}. There are about {{ songs.count }} results in our database. Number two must be your favorite.">
+    <meta name="keywords" content='top 10 {{ form.q.value }} songs, top 10 songs by {{ form.q.value }}, {{ form.q.value }} top 10 songs, top 10 songs of {{ form.q.value }}, {{ form.q.value }} song'>
+{% endblock meta_tags %}
+
 {% block head_title %}Search{% endblock %}
 
 {% block content %}
