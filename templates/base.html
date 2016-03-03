@@ -66,21 +66,6 @@
             display:inline-block;
         }
     </style>
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-48464765-1', 'top10songs.co.in');
-        ga('send', 'pageview');
-    </script>
 </head>
 
 <body>
@@ -96,7 +81,7 @@
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"
         onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="share facebook"><span class="fa fa-facebook"></span></a>
 
-                <a href="http://twitter.com/share?text={{ title|default:'Top 10 Songs' }}&url={{ request.build_absolute_uri|urlencode }}&hashtags=top10songs"
+                <a href="http://twitter.com/share?text={{ title|default:'Top 10 Songs' }}&url={{ request.build_absolute_uri|urlencode }}&hashtags=top10songs,{{ song.name|cut:' '|urlencode}},{{song.album|cut:' '|urlencode}}{% for artist in song.get_artists %},{{artist|cut:' '|urlencode}}{% endfor %}"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" class="share twitter"><span class="fa fa-twitter"></span></a>
 
                 <a  class="share google-plus" href="https://plus.google.com/share?url={{ request.build_absolute_uri|urlencode }}"
@@ -123,6 +108,21 @@
     </div>
     <!--container-->
     {% block scripts %}
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-48464765-1', 'top10songs.co.in');
+        ga('send', 'pageview');
+    </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
         window.jQuery || document.write('<script src={% static "js/jquery.min.js" %}>')
