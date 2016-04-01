@@ -1,0 +1,25 @@
+version: '2'
+services:
+  postgres:
+    restart: always
+    image: postgres:latest
+    volumes_from:
+      - data
+    ports:
+      - "5432:5432"
+  data:
+    image: postgres:latest
+    volumes:
+      - /var/lib/postgresql
+    command: "true"
+  web:
+    restart: always
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    env_file: .env

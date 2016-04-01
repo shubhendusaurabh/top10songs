@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'top10songs.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'top10songs',
-        'USER': 'shubhu',
-        'PASSWORD': 'shubhu',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
+        #'PASSWORD': os.environ['DB_PASS'],
+        'HOST': os.environ['DB_SERVICE'],
+        'PORT': os.environ['DB_PORT']
     }
 }
 
@@ -129,7 +129,7 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
-  
+
 )
 
 # Parse database configuration from $DATABASE_URL
@@ -167,10 +167,10 @@ if get_env_variable('DEVELOPMENT') == 'True':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'top10songs',
-            'USER': 'shubhu',
-            'PASSWORD': 'shubhu',
-            'HOST': 'localhost',
-            'PORT': '5432'
+            'NAME': os.environ['DB_NAME'],
+            'USER': os.environ['DB_USER'],
+            'PASSWORD': os.environ['DB_PASS'],
+            'HOST': os.environ['DB_SERVICE'],
+            'PORT': os.environ['DB_PORT']
         }
     }
