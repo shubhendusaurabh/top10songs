@@ -4,20 +4,29 @@
 {{ song.name }} {% if song.artist %}by {{ song.artist }} {% endif %} {% if song.album %} from {{ song.album }} {% endif %}
 {% endblock %}
 {% block twitterCard %}
-    <meta name="twitter:card" content="player">
-    <meta name="twitter:url" content="www.top10songs.co.in{{ song.get_absolute_url }}">
-    <meta name="twitter:title" content="Top 10 Songs">
-    <meta name="twitter:description" content="{{ song.name }} {% if song.artist %}by {{ song.artist }} {% endif %} {% if song.album %} from {{ song.album }} {% endif %}">
-    <meta name="twitter:image" content="https://i.ytimg.com/vi/{{ song.youtube_id }}/maxresdefault.jpg">
-    <meta name="twitter:image:width" content="1280">
-    <meta name="twitter:image:height" content="720">
+<meta name="twitter:card" content="player">
+<meta name="twitter:url" content="http://www.top10songs.co.in{{ song.get_absolute_url }}">
+<meta name="twitter:title" content="Top 10 Songs">
+<meta name="twitter:description" content="{{ song.name }} {% if song.artist %}by {{ song.artist }} {% endif %} {% if song.album %} from {{ song.album }} {% endif %}">
+<meta name="twitter:image" content="https://i.ytimg.com/vi/{{ song.youtube_id }}/maxresdefault.jpg">
+<meta name="twitter:image:width" content="1280">
+<meta name="twitter:image:height" content="720">
 
-    <meta name="twitter:player" content="https://www.youtube.com/embed/{{ song.youtube_id }}">
-    <meta name="twitter:player:width" content="1280">
-    <meta name="twitter:player:height" content="720">
-    <meta name="twitter:site" content="@top10songsin">
-    <meta name="twitter:creator" content="@top10songsin">
+<meta name="twitter:player" content="https://www.youtube.com/embed/{{ song.youtube_id }}">
+<meta name="twitter:player:width" content="1280">
+<meta name="twitter:player:height" content="720">
+<meta name="twitter:site" content="@top10songsin">
+<meta name="twitter:creator" content="@top10songsin">
 {% endblock twitterCard %}
+{% block openGraph %}
+<meta property="og:title" content="{{ song.name }} {% if song.artist %}by {{ song.artist }} {% endif %} {% if song.album %} from {{ song.album }} {% endif %}">
+<meta property="og:type" content="music.song">
+<meta property="og:url" content="http://www.top10songs.co.in{{ song.get_absolute_url }}">
+<meta property="og:image" content="https://i.ytimg.com/vi/{{ song.youtube_id }}/maxresdefault.jpg">
+<meta property="music:duration" content="4:00">
+<meta property="music:album" content="{{song.album}}">
+<meta property="music:musician" content="{{song.artist}}">
+{% endblock openGraph %}
 {% block meta_tags %}
 <meta name="description" content='Watch/Listen to {{ song.name }} by {{ song.artist }} of {{ song.album }} for free on YouTube. {{ song.name }} is one of the Top 10 songs in {{ song.updated_at|date:"F, Y" }}.'>
 <meta name="keywords" content='{{ song.name }}, {{ song.artist }}, {{ song.album }}, {{ song.name }} youtube video, {{ song.name }} {{ song.artist }}, listen for free {{ song.name }}, {{ song.name }} by {{ song.artist }}, {{ song.name }} mp3, {{ song.name }} lyrics'>
@@ -32,7 +41,7 @@
         </header>
         <div>
             {% if song.album %}
-            <p>Album: 
+            <p>Album:
                 <span itemprop="inAlbum">
                     <strong>
                         <a href="{% url 'search' %}?q={{ song.album }}">{{ song.album }}</a>
@@ -40,7 +49,7 @@
                 </span>
             </p>
             {% endif %} {% if song.get_artists %}
-            <p>Artist: 
+            <p>Artist:
                 <span itemprop="byArtist">
                     <strong>
                         {% for artist in song.get_artists %}
@@ -54,8 +63,9 @@
             <p>Publisher: <span itemprop="publisher"><strong>{{ song.publisher }}</strong></span>
             </p>
             {% endif %}
-            <meta itemprop="datePublished" content={{ song.created_at }} />
-            <meta itemprop="duration" content="PT5M0S" />
+            <meta itemprop="datePublished" content={{ song.created_at }}>
+            <meta itemprop="duration" content="PT5M0S">
+            <meta itemprop="interactionCount" content="8400">
         </div>
         <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
 
@@ -66,6 +76,10 @@
                     <iframe src="//www.youtube-nocookie.com/embed/{{ song.youtube_id }}" class="embed-responsive-item" allowfullscreen></iframe>
                 </div>
             </section>
+            <meta itemprop="description" content="{{ song.name }} {% if song.artist %}by {{ song.artist }} {% endif %} {% if song.album %} from {{ song.album }} {% endif %}">
+            <meta itemprop="name" content="{{song.name}}">
+            <meta itemprop="thumbnailUrl" content="https://i.ytimg.com/vi/{{ song.youtube_id }}/maxresdefault.jpg">
+            <meta itemprop="uploadDate" content="{{song.created_at}}">
         </div>
         <div class="row">
             <h3>Chart Date <span class="pull-right">Position</span></h3>
