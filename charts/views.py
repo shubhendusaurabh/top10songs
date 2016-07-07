@@ -5,8 +5,10 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
 
-from .models import Chart, Song, CustomChart
+from rest_framework import viewsets
 
+from .models import Chart, Song, CustomChart
+from .serializers import SongSerializer, ChartSerializer
 
 class ChartArchiveIndexView(ArchiveIndexView):
     model = Chart
@@ -111,3 +113,11 @@ class HomePageView(TemplateView):
 
 class CustomChartDetailView(DetailView):
     queryset = CustomChart.objects.prefetch_related('songs')
+
+class SongViewSet(viewsets.ModelViewSet):
+    queryset = Song.objects.order_by('name')
+    serializer_class = SongSerializer
+
+class ChartViewSet(viewsets.ModelViewSet):
+    queryset = Chart.objects.all()
+    serializer_class = ChartSerializer

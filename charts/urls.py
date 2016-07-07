@@ -1,7 +1,14 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 from django.views.generic.dates import *
+
+from rest_framework import routers
+
 from .views import *
 from .feeds import LatestChartsFeeds
+
+router = routers.DefaultRouter()
+router.register(r'songs', SongViewSet)
+router.register(r'charts', ChartViewSet)
 
 urlpatterns = patterns('',
                        # Date Based View
@@ -59,5 +66,6 @@ urlpatterns = patterns('',
                        # Feeds
                        url(r'^latest/feeds/$',
                            LatestChartsFeeds(),
-                           name='feeds')
+                           name='feeds'),
+                       url(r'api/', include(router.urls), name="api")
                        )

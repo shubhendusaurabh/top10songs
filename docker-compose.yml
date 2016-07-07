@@ -1,7 +1,6 @@
 version: '2'
 services:
   postgres:
-    restart: always
     image: postgres:latest
     volumes_from:
       - data
@@ -13,7 +12,6 @@ services:
       - /var/lib/postgresql
     command: "true"
   web:
-    restart: always
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:

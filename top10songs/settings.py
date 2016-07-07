@@ -50,9 +50,16 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.sitemaps',
     'django.contrib.humanize',
+    'rest_framework',
     'charts',
     'search',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',
