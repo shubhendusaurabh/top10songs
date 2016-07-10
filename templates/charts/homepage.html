@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
-{% load static extra_tags %}
-{% load humanize %}
+{% load static extra_tags humanize compress %}
 {% block stylesheets %}
+{% compress css %}
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endcompress %}
 {% endblock stylesheets %}
 {% block content %}
 <div class="row">
@@ -18,7 +19,7 @@
                         <span class="position">#{{ forloop.counter }}</span>
                     </time>
 
-                    <img width="120" height="90" alt="{{ song.name }}" src="http://i.ytimg.com/vi/{{ song.youtube_id }}/default.jpg">
+                    <img width="120" height="90" alt="{{ song.name }}" src="//i.ytimg.com/vi/{{ song.youtube_id }}/default.jpg">
 
                     <div class="info">
                         <h2 class="title" itemprop="name"><a href="{{ song.get_absolute_url }}" itemprop="url">{{ song.name }}</a></h2>

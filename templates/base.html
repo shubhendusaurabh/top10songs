@@ -1,4 +1,4 @@
-{% load staticfiles extra_tags %}
+{% load staticfiles extra_tags compress %}
 <!DOCTYPE html>
 <html lang="en" prefix="og:http://ogp.me/ns#">
 <head>
@@ -32,6 +32,7 @@
     <link rel='shortcut icon' href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <link rel='icon' href='{% static "img/favicon.ico" %}' type='image/x-icon'>
     {% block stylesheets %}{% endblock %}
+    {% compress css %}
     <style>
         body {
             padding-bottom: 20px;
@@ -77,6 +78,8 @@
             display:inline-block;
         }
     </style>
+    {% endcompress %}
+    {% compress js inline %}
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -92,6 +95,7 @@
         ga('create', 'UA-48464765-1', 'top10songs.co.in');
         ga('send', 'pageview');
     </script>
+    {% endcompress %}
 </head>
 
 <body>
@@ -125,6 +129,7 @@
         </div>
         <hr>
         <div id="disqus_thread"></div>
+        {% compress js inline %}
         <script>
             (function() {  // DON'T EDIT BELOW THIS LINE
                 var d = document, s = d.createElement('script');
@@ -133,6 +138,7 @@
                 (d.head || d.body).appendChild(s);
             })();
         </script>
+        {% endcompress %}
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
         <hr>
         <footer class="text-center">
