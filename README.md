@@ -7,6 +7,10 @@ A Simple Django app built while learning django
 
 [Top10Songs](http://www.top10songs.co.in "Top10Songs")
 
+TODO
+====
+- [ ] upgrade to django 1.9
+
 Workflow
 ========
 *  heroku pg:backups capture

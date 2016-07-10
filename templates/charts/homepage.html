@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static extra_tags humanize compress %}
 {% block stylesheets %}
-{% compress css %}
+{% compress css inline %}
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% endcompress %}
 {% endblock stylesheets %}
