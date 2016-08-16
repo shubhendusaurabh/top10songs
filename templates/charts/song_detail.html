@@ -41,15 +41,15 @@
         </header>
         <div>
             {% if song.album %}
-            <p>Album:
+            <h2>Album:
                 <span itemprop="inAlbum">
                     <strong>
                         <a href="{% url 'search' %}?q={{ song.album }}">{{ song.album }}</a>
                     </strong>
                 </span>
-            </p>
+            </h2>
             {% endif %} {% if song.get_artists %}
-            <p>Artist:
+            <h2>Artist:
                 <span itemprop="byArtist">
                     <strong>
                         {% for artist in song.get_artists %}
@@ -58,7 +58,7 @@
                         {% endfor %}
                     </strong>
                 </span>
-            </p>
+            </h2>
             {% endif %} {% if song.publisher %}
             <p>Publisher: <span itemprop="publisher"><strong>{{ song.publisher }}</strong></span>
             </p>

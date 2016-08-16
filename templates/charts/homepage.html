@@ -7,12 +7,13 @@
 {% endblock stylesheets %}
 {% block content %}
 <div class="row">
+    <h1 class="sr-only">Top 10 Hindi and English Songs</h1>
     <div class="col-xs-12 col-sm-offset-2 col-sm-8">
         {% for chart in latest_charts %}
         <div class="text-center">
 
             <ul class="song-list" itemscope itemtype="http://schema.org/MusicGroup">
-            <h1 itemprop="name">Top 10 {{ chart.get_language_display }} Songs <small>({{ chart.week }})</small></h1>
+            <h2 itemprop="name">Top 10 {{ chart.get_language_display }} Songs <small>({{ chart.week }})</small></h2>
             {% for song in chart.get_songs %}
                 <li itemtype="http://schema.org/MusicRecording" itemscope itemprop="tracks">
                     <time>
@@ -22,7 +23,7 @@
                     <img width="120" height="90" alt="{{ song.name }}" src="//i.ytimg.com/vi/{{ song.youtube_id }}/default.jpg">
 
                     <div class="info">
-                        <h2 class="title" itemprop="name"><a href="{{ song.get_absolute_url }}" itemprop="url">{{ song.name }}</a></h2>
+                        <h3 class="title" itemprop="name"><a href="{{ song.get_absolute_url }}" itemprop="url">{{ song.name }}</a></h3>
                         {% if song.album %}
                         <p class="desc">Album: <span itemprop="inAlbum"><strong><a href="{% url 'search' %}?q={{ song.album }}">{{ song.album }}</a></strong></span>
                         </p>
