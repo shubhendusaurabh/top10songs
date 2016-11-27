@@ -2,11 +2,12 @@
 {% block title %}All Songs{% endblock %}
 {% block content %}
 <div class="row text-center">
+    <h1>All Top Songs</h1>
     <div class="col-md-2"></div>
     <div class="col-md-8">
 
     <div class="panel panel-info">
-        <div class="panel-heading">All Songs List</div>
+        <div class="panel-heading"><h2 class="panel-title">All Songs List</h2></div>
         <ul class="list-group">
             {% for song in object_list %}
             <li class="list-group-item"><a href='{{ song.get_absolute_url }}'> {{ song.name }} by {{ song.artist|default:'N/A' }}</a>

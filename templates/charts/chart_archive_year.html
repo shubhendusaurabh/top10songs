@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}
-{{ year|date:"Y" }}
+Top 10 Songs for year {{ year|date:"Y" }}
 {% endblock %}
 {% block content %}
+<h1 class="text-center">Top 10 Songs Chart for year {{year|date:"Y"}}</h1>
+<hr>
 <ul class="pager">
     {% for date in date_list %}
     <li><a href='{% url "chart_archive_month_numeric" year=date.year month=date.month %}'>{{ date|date:"F" }}</a>
     </li>
     {% endfor %}
 </ul>
-
+<hr>
 <div>
     <div class="panel panel-info text-center">
         <div class="panel-heading">

@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}
-{{ month|date:"F, Y" }}
+Top 10 Songs in {{ month|date:"F, Y" }}
 {% endblock %}
 {% block content %}
+<h1 class="text-center">Top 10 Songs in {{ month|date:"F, Y"}}</h1>
 <div>
     <div class="panel panel-info text-center">
         <div class="panel-heading">

@@ -3,8 +3,7 @@
 {% block title %}Top 10 {{ object.about }} Songs{% endblock %}
 
 {% block meta_tags %}
-<meta name="description" content='Watch/Listen to Top 10 {{ object.about }} Songs here. Top songs of {{ object.about }} are {% for song in object.songs.all %}{{ song.name}}, {% endfor %}' >
-<meta name="keywords" content='top 10 {{ object.about }} songs, top 10 songs of {{ object.about }}, best of {{ object.about }}, top ten {{ object.about }} songs, latest {{ object.about }} songs, {{ object.about }} top 10 songs'>
+<meta name="description" content='Top songs of {{ object.about }} are {% for song in object.songs.all %}{{ song.name}}, {% endfor %}' >
 {% endblock meta_tags %}
 
 {% block twitterCard %}

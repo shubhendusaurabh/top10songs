@@ -10,6 +10,10 @@ from rest_framework import viewsets
 from .models import Chart, Song, CustomChart
 from .serializers import SongSerializer, ChartSerializer
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 class ChartArchiveIndexView(ArchiveIndexView):
     model = Chart
     date_field = 'week'
@@ -87,13 +91,22 @@ class ChartListView(ListView):
     model = Chart
     paginate_by = 20
 
+    # def get_queryset(self, **kwargs):
+        # queryset = super(ChartListView, self).get_queryset(**kwargs)
+        # if self.language:
+            # logger.error(self.language)
+            # queryset.filter(language=self.language)
+        # else:
+            # logger.error('no lang')
+        # return queryset
+    
     def get_context_data(self, **kwargs):
         context = super(ChartListView, self).get_context_data(**kwargs)
         if self.language:
-            context['charts'] = Chart.objects.filter(language=self.language)
+            context['chart_list'] = Chart.objects.filter(language=self.language)
             context['language'] = dict(Chart.LANGUAGES)[self.language]
-        else:
-            context['charts'] = Chart.objects.all()
+        # else:
+            # context['charts'] = Chart.objects.all()
         return context
 
 

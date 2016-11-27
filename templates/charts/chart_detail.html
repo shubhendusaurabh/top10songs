@@ -76,7 +76,7 @@
                                 <a href="https://plus.google.com/share?url=http%3A//www.top10songs.co.in{{ song.get_absolute_url|urlencode }}"
            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" class="google-plus"><span class="fa fa-google-plus"></span></a>
 
-                                 <a class="share tumblr" href="http://www.tumblr.com/share/link?url={{ request.build_absolute_uri|urlencode }}&amp;name={{ title|default:'Top 10 Songs' }}&amp;description={{ song.name }} by {{ song.artist}}&amp;tags={{song.name}},{{song.artist}},{{song.album}},music,top10songs"
+                                 <a class="tumblr" href="http://www.tumblr.com/share/link?url={{ request.build_absolute_uri|urlencode }}&amp;name={{ title|default:'Top 10 Songs' }}&amp;description={{ song.name }} by {{ song.artist}}&amp;tags={{song.name}},{{song.artist}},{{song.album}},music,top10songs"
                                  onclick="window.open(this.href, 'tumblr-share', 'width=490,height=530');return false;">
                                   <span class="fa fa-tumblr"></span>
                                  </a>

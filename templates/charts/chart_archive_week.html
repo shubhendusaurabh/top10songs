@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}
-{{ week|date:'W' }}
+Top 10 Songs for {{ week|date:'W' }}
 {% endblock %}
 {% block content %}
-<h1>Week {{ week|date:'W' }}</h1>
+<h1>Top 10 Songs for Week {{ week|date:'W' }}</h1>
 
 <ul>
   {% for chart in object_list %}
