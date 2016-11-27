@@ -13,7 +13,7 @@ sitemaps = {
     'custom': CustomChartSitemap
 }
 urlpatterns = patterns('',
-                       url(r'^robots.txt$', lambda r: HttpResponse("User-agent: * \nDisallow: ", content_type="text/plain")),
+                       url(r'^robots\.txt$', lambda r: HttpResponse("User-agent: * \nDisallow: ", content_type="text/plain")),
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
                        url(r'^search/', include('search.urls')),
