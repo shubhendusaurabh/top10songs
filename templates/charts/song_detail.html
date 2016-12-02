@@ -84,10 +84,10 @@
         <div class="row">
             <h3>Chart Date <span class="pull-right">Position</span></h3>
                 <div class="list-group">
-                {% for ranking in song.song.select_related %}
+                {% for ranking in song.song.select_related|dictsort:"chart.week" %}
                 <a class="list-group-item" href="{{ ranking.chart.get_absolute_url }}">
                         <span class="badge">{{ ranking.position }}</span>
-                        Top 10 {{ ranking.chart.get_language_display}} Songs in {{ ranking.chart.week|date }}
+                        Top 10 {{ ranking.chart.get_language_display}} Songs in <strong>{{ ranking.chart.week|date }}</strong>
                     </a>
                 {% endfor %}
                 </div>

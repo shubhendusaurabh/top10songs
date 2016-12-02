@@ -60,7 +60,7 @@ class Ranking(models.Model):
     position = models.PositiveSmallIntegerField()
 
     class Meta:
-        ordering = ('position',)
+        ordering = ('chart',)
 
 
 class CustomChart(models.Model):

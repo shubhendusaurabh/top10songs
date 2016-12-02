@@ -4,6 +4,18 @@ Top 10 Songs in {{ month|date:"F, Y" }}
 {% endblock %}
 {% block content %}
 <h1 class="text-center">Top 10 Songs in {{ month|date:"F, Y"}}</h1>
+<hr>
+<div class="panel panel-primary">
+    <div class="panel-heading text-center"><h4>Top 10 Songs in {{month|date:"F, Y"}}</h4></div>
+    <div class="panel-body" style="display:flex;">
+        {% for song in top_songs %}
+        <div class="songlink">
+            <a href="{{ song.song.get_absolute_url }}" title="{{song.song.name}}">
+                <img height="90" width="120" class="img-thumbnail" alt="{{ song.song.name }}" src="//i.ytimg.com/vi/{{ song.song.youtube_id }}/default.jpg">
+            </a></div>
+        {% endfor %}
+    </div>
+</div>
 <div>
     <div class="panel panel-info text-center">
         <div class="panel-heading">

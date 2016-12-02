@@ -3,8 +3,19 @@
 Top 10 Songs for year {{ year|date:"Y" }}
 {% endblock %}
 {% block content %}
-<h1 class="text-center">Top 10 Songs Chart for year {{year|date:"Y"}}</h1>
+<h1 class="text-center">Top 10 Songs Charts for year {{year|date:"Y"}}</h1>
 <hr>
+<div class="panel panel-primary">
+    <div class="panel-heading text-center"><h4>All Top 10 Songs in {{year|date:"Y"}}</h4></div>
+    <div class="panel-body" style="display:flex;">
+        {% for song in top_songs %}
+        <div class="songlink">
+            <a href="{{ song.song.get_absolute_url }}" title="{{song.song.name}}">
+                <img height="90" width="120" class="img-thumbnail" alt="{{ song.song.name }}" src="//i.ytimg.com/vi/{{ song.song.youtube_id }}/default.jpg">
+            </a></div>
+        {% endfor %}
+    </div>
+</div>
 <ul class="pager">
     {% for date in date_list %}
     <li><a href='{% url "chart_archive_month_numeric" year=date.year month=date.month %}'>{{ date|date:"F" }}</a>
@@ -25,6 +36,26 @@ Top 10 Songs for year {{ year|date:"Y" }}
             <li>No Chart Found</li>
             {% endfor %}
         </ul>
+    </div>
+    <div class="text-center">
+        {% if is_paginated %}
+
+        <ul class="pagination">
+
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+            </li>
+            {% endif %} {% for i in paginator.page_range %} {% if page_obj.has_next %}
+            <li><a href="?page={{i}}">{{i}}</a>
+            </li>
+            {% endif %} {% endfor %} {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+
+        </ul>
+
+        {% endif %}
     </div>
 </div>
 {% endblock %}

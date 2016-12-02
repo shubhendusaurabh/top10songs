@@ -38,6 +38,9 @@
         body {
             padding-bottom: 20px;
         }
+        h1 small {
+            color: #333333;
+        }
         a.share:link,
         a.share:visited {
             text-decoration: none;
@@ -103,7 +106,10 @@
     <div class="container">
 
         {% block header %} {% header_links %} {% endblock header %}
-
+        <div class="text-center">
+            <h3><a class="text-danger" rel="nofollow" target="_blank" href="https://www.amazon.in/gp/goldbox?ie=UTF8&ref_=nav_cs_gb&_encoding=UTF8&tag=top10songs-21&linkCode=ur2&linkId=26493b4534ddc913616e89eb0982b611&camp=3638&creative=24630"><strong>Today's Deals</strong></a><small>(Amazon)</small><img src="//ir-in.amazon-adsystem.com/e/ir?t=top10songs-21&l=ur2&o=1" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></h3>
+        </div>
+        <hr>
         {% block content %} {% endblock %}
 
         <hr>
@@ -128,22 +134,6 @@
                 </a>
             </p>
         </div>
-        <hr>
-        <script charset="utf-8" type="text/javascript">
-            amzn_assoc_ad_type = "responsive_search_widget";
-            amzn_assoc_tracking_id = "top10songs-21";
-            amzn_assoc_marketplace = "amazon";
-            amzn_assoc_region = "IN";
-            amzn_assoc_placement = "";
-            amzn_assoc_search_type = "search_widget";
-            amzn_assoc_width = "auto";
-            amzn_assoc_height = "auto";
-            amzn_assoc_default_search_category = "";
-            amzn_assoc_default_search_key = "songs";
-            amzn_assoc_theme = "dark";
-            amzn_assoc_bg_color = "FFFFFF";
-        </script>
-        <script src="//z-in.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1&MarketPlace=IN"></script>
         <hr>
         <div id="disqus_thread"></div>
         {% compress js inline %}
